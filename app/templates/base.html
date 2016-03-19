@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>EagleJumpSystem</title>
+    <title>{% block title %}Eagle Jump System{% endblock %}</title>
     <link rel="shortcut icon" href="/static/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="/static/main.css">
     {% block head %}{% endblock %}
@@ -19,7 +19,7 @@
           </a>
         </li>
         <li class="pure-menu-item">
-          <a href="#" class="pure-menu-link">
+          <a href="{{url_for('input_files')}}" class="pure-menu-link">
             <i class="fa fa-cloud-upload"></i>
           </a>
         </li>
@@ -47,6 +47,8 @@
         </li>
       </ul>
     </div>
-    {% block content %}{% endblock %}
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
   </body>
 </html>

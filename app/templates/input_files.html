@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Import - EagleJumpSystem{% endblock %}
+{% block content %}
+<form class="pure-form pure-form-aligned" method="POST" enctype="multipart/form-data" action="{{url_for('import_files')}}">
+  <fieldset>
+    <div class="pure-control-group">
+      <label for="series">Series</label>
+      <input id="series" name="series" type="text" placeholder="newgame" />
+    </div>
+
+    <div class="pure-control-group">
+      <label for="volume">Volume</label>
+      <input id="volume" name="volume" type="text" placeholder="vol1">
+    </div>
+
+    <div class="pure-control-group">
+      <label for="email">Images</label>
+      <input id="email" name="images" type="file" accept="image/*" multiple />
+    </div>
+
+    <div class="pure-controls">
+      <button type="submit" class="pure-button pure-button-primary"><i class="fa fa-cloud-upload"></i></button>
+    </div>
+  </fieldset>
+</form>
+{% endblock %}
