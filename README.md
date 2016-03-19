@@ -8,4 +8,4 @@ $(npm bin)/gulp
 python app/main.py
 ```
 
-and open http://localhost;5000
+and open http://localhost:5000
