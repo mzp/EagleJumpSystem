@@ -8,6 +8,45 @@
     {% block head %}{% endblock %}
   </head>
   <body>
+    <div class="headerMenu pure-menu pure-menu-horizontal pure-menu-fixed">
+      <a class="headerMenu-title pure-menu-heading" href="">
+        EagleJumpSystem
+      </a>
+      <ul class="headerMenu-items pure-menu-list">
+        <li class="pure-menu-item pure-menu-selected">
+          <a href="#" class="pure-menu-link">
+            <i class="fa fa-search"></i>
+          </a>
+        </li>
+        <li class="pure-menu-item">
+          <a href="#" class="pure-menu-link">
+            <i class="fa fa-cloud-upload"></i>
+          </a>
+        </li>
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" class="pure-menu-link">
+              <i class="fa fa-magic"></i>
+            </a>
+            <ul class="pure-menu-children">
+                <li class="pure-menu-item">
+                  <a href="#" class="pure-menu-link">
+                    <i class="fa fa-commenting"></i>
+                  </a>
+                </li>
+                <li class="pure-menu-item">
+                  <a href="#" class="pure-menu-link">
+                    <i class="fa fa-group"></i>
+                  </a>
+                </li>
+            </ul>
+        </li>
+        <li class="pure-menu-item">
+          <a href="#" class="pure-menu-link">
+            <i class="fa fa-cogs"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
     {% block content %}{% endblock %}
   </body>
 </html>
