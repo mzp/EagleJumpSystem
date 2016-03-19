@@ -13,6 +13,6 @@ def new(id):
     book = db.books.find(id)
     return render_template('upload/new.html', book=book)
 
-@upload.route("/upload<id>/create", methods=['POST'])
+@upload.route("/upload/<id>/create", methods=['POST'])
 def create(id):
     return '???'
