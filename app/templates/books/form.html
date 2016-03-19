@@ -2,26 +2,25 @@
 {% set active_page = 'books' -%}
 {% block content %}
 <form class="pure-form pure-form-stacked" action={{url}} method="POST">
-  <fieldset>
-    <label for="id">id</label>
-    <input id="id" name="id" type="text" placeholder="zoi" value="{{id}}" {% if readonly %}readonly{% endif %} />
+  <label for="id">id</label>
+  <input id="id" name="id" type="text" placeholder="zoi" value="{{id}}" {% if readonly %}readonly{% endif %} />
 
-    <label for="title">title</label>
-    <input id="tile" name="title" type="text" placeholder="NEW GAME!" value="{{title}}" >
+  <label for="title">title</label>
+  <input id="tile" name="title" type="text" placeholder="NEW GAME!" value="{{title}}" >
 
-    <label for="volume">volume</label>
-    <input id="volume" name="volume" type="number" placeholder="3" value="{{volume}}" >
-    <label for="volume">characters</label>
-    {% for i in range(10) %}
-      <div class="pure-g">
-        {% set character = characters[i] if i < characters.__len__() else {} -%}
-        <input class="pure-u-1-10" type="text" name="name[{{i}}]" placeholder="name" value="{{character.name}}" />
-        <input class="pure-u-1-10" type="text" name="color[{{i}}]" placeholder="rgb(r, g, b)" value="{{character.color}}" />
-      </div>
-    {% endfor %}
+  <label for="volume">volume</label>
+  <input id="volume" name="volume" type="number" placeholder="3" value="{{volume}}" >
+  <label for="volume">characters</label>
+  {% for i in range(10) %}
+    <div class="pure-g">
+      {% set character = characters[i] if i < characters.__len__() else {} -%}
+      <input class="pure-u-1-10" type="text" name="name[{{i}}]" placeholder="name" value="{{character.name}}" />
+      <input class="pure-u-1-10" type="text" name="color[{{i}}]" placeholder="rgb(r, g, b)" value="{{character.color}}" />
+    </div>
+  {% endfor %}
 
-    <button type="submit" class="pure-button pure-button-primary">
-      <i class="fa fa-check"></i>
-    </button>
+  <button type="submit" class="pure-button pure-button-primary">
+    <i class="fa fa-check"></i>
+  </button>
 </form>
 {% endblock %}
