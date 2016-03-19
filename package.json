@@ -1,0 +1,19 @@
+{
+  "name": "eagle-jump-system",
+  "version": "1.0.0",
+  "description": "Comic page search engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mzp/EagleJumpSystem.git"
+  },
+  "author": "mzp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mzp/EagleJumpSystem/issues"
+  },
+  "homepage": "https://github.com/mzp/EagleJumpSystem#readme"
+}
