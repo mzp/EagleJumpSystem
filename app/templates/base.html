@@ -12,18 +12,20 @@
       <a class="headerMenu-title pure-menu-heading" href="">
         EagleJumpSystem
       </a>
+      {% set active_page = active_page|default('index') -%}
       <ul class="headerMenu-items pure-menu-list">
-        <li class="pure-menu-item pure-menu-selected">
-          <a href="#" class="pure-menu-link">
+        <li class="pure-menu-item {% if 'index' == active_page %}pure-menu-selected{% endif %}">
+          <a href="/" class="pure-menu-link">
             <i class="fa fa-search"></i>
           </a>
         </li>
-        <li class="pure-menu-item">
+        <li class="pure-menu-item {% if 'input_files' == active_page %}pure-menu-selected{% endif %}">
           <a href="{{url_for('input_files')}}" class="pure-menu-link">
             <i class="fa fa-cloud-upload"></i>
           </a>
         </li>
-        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover
+            {% if 'auto' == active_page %}pure-menu-selected{% endif %}">
             <a href="#" class="pure-menu-link">
               <i class="fa fa-magic"></i>
             </a>
@@ -40,7 +42,7 @@
                 </li>
             </ul>
         </li>
-        <li class="pure-menu-item">
+        <li class="pure-menu-item {% if 'manual' == active_page %}pure-menu-selected{% endif %}">
           <a href="#" class="pure-menu-link">
             <i class="fa fa-cogs"></i>
           </a>

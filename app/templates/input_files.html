@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% set active_page = 'input_files' -%}
 {% block title %}Import - EagleJumpSystem{% endblock %}
 {% block content %}
 <form class="pure-form pure-form-aligned" method="POST" enctype="multipart/form-data" action="{{url_for('import_files')}}">
