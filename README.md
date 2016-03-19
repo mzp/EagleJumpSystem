@@ -3,6 +3,8 @@
 
 ```
 pip install --require requirements.txt
+npm install
+$(npm bin)/gulp
 python app/main.py
 ```
 
