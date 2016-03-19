@@ -4,7 +4,7 @@ app = Flask(__name__)
 app.config.update(DEBUG=True)
 
 @app.route("/")
-def hello():
+def index():
     return render_template('index.html')
 
 @app.route("/fonts/<path:filename>")
