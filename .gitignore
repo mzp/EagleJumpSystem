@@ -1,5 +1,6 @@
 app/static/fonts
 app/static/*.css
+data/
 
 ### https://raw.github.com/github/gitignore/66f6232221f70a17a3c37feb3fcb77da850e149c/Python.gitignore
 
