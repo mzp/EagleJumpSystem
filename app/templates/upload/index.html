@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% set active_page = 'upload' -%}
+{% block content %}
+<ul>
+  {% for book in books %}
+  <li><a href="{{url_for('upload.new', id=book.id)}}">{{ book.title }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

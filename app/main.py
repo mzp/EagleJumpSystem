@@ -1,21 +1,15 @@
 from flask import Flask, url_for, render_template, redirect, request
 from pages.books import books
+from pages.upload import upload
 
 app = Flask(__name__)
 app.config.update(DEBUG=True)
 app.register_blueprint(books)
+app.register_blueprint(upload)
 
 @app.route("/")
 def index():
     return render_template('index.html')
-
-@app.route("/input_files")
-def input_files():
-    return render_template('input_files.html')
-
-@app.route("/import", methods=['POST'])
-def import_files():
-    return "not yet"
 
 @app.route("/fonts/<path:filename>")
 def fonts(filename):
