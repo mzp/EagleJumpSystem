@@ -19,6 +19,11 @@
             <i class="fa fa-search"></i>
           </a>
         </li>
+        <li class="pure-menu-item {% if 'books' == active_page %}pure-menu-selected{% endif %}">
+          <a href="{{url_for('books.index')}}" class="pure-menu-link">
+            <i class="fa fa-book"></i>
+          </a>
+        </li>
         <li class="pure-menu-item {% if 'input_files' == active_page %}pure-menu-selected{% endif %}">
           <a href="{{url_for('input_files')}}" class="pure-menu-link">
             <i class="fa fa-cloud-upload"></i>

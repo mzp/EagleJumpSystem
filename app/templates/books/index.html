@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% set active_page = 'books' -%}
+{% block content %}
+<p><a href="{{url_for('books.new')}}"><i class="fa fa-plus"></i></a></p>
+<ul>
+  {% for book in books %}
+  <li><a href="{{url_for('books.edit', id=book.id)}}">{{ book.title }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
