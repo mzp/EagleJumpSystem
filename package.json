@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/mzp/EagleJumpSystem/issues"
   },
-  "homepage": "https://github.com/mzp/EagleJumpSystem#readme"
+  "homepage": "https://github.com/mzp/EagleJumpSystem#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-stylus": "^2.3.1",
+    "purecss": "^0.6.0"
+  }
 }
