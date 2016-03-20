@@ -9,6 +9,7 @@ def __parse(data):
     volume = data['volume']
     characters = [
         {
+            'tag': data['tag[%d]' % i],
             'name': data['name[%d]' % i],
             'color': data['color[%d]' % i]
         }

@@ -14,6 +14,7 @@
   {% for i in range(10) %}
     <div class="pure-g">
       {% set character = characters[i] if i < characters.__len__() else {} -%}
+      <input class="pure-u-1-10" type="text" name="tag[{{i}}]" placeholder="tag" value="{{character.tag}}" />
       <input class="pure-u-1-10" type="text" name="name[{{i}}]" placeholder="name" value="{{character.name}}" />
       <input class="pure-u-1-10" type="text" name="color[{{i}}]" placeholder="rgb(r, g, b)" value="{{character.color}}" />
     </div>
