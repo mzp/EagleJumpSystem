@@ -20,3 +20,8 @@ def update(panel, crops):
     for (x, y, w, h) in crops:
         cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
     cv2.imwrite((__path(panel) / 'detect.jpeg').as_posix(), image)
+
+def find(panel):
+    detect = __path(panel) / 'detect.jpeg'
+    faces = __path(panel).glob('face_*.jpeg')
+    return (detect, list(faces))

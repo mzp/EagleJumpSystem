@@ -16,7 +16,8 @@ def __info(path):
 def __make(path):
     metadata = db.metadata.find(path.as_posix())
     (book_id, volume, name) = __info(path)
-    return { 'path': path, 'metadata': metadata, 'book_id': book_id, 'volume': volume, 'name': name }
+    (detect, faces) = db.faces.find( { 'book_id': book_id, 'volume': volume, 'name': name })
+    return { 'path': path, 'metadata': metadata, 'book_id': book_id, 'volume': volume, 'name': name, 'detect': detect, 'faces': faces }
 
 def all():
     for path in root.glob('*/*/*.*'):
