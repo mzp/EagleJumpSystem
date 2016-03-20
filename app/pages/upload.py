@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 import db.books
+import commands.cut
 
 upload = Blueprint('upload', __name__)
 
@@ -15,4 +16,10 @@ def new(id):
 
 @upload.route("/upload/<id>/create", methods=['POST'])
 def create(id):
-    return '???'
+    ident = commands.cut.start()
+    return redirect(url_for('upload.show', id=ident))
+
+@upload.route("/upload/<id>/log")
+def show(id):
+    content = commands.cut.show(id)
+    return render_template('upload/show.html', content=content)
