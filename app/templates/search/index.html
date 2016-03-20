@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="pure-form searchbox">
+  <input type="text" class="pure-input-rounded searchbox-query">
+</div>
+
+<div class="pure-g">
+  {% for panel in panels %}
+  <div class="pure-u-1-6 thumbnail">
+    <img class="thumbnail-image" src="{{panel.path}}" />
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+
