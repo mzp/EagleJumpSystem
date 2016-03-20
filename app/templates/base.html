@@ -47,10 +47,23 @@
                 </li>
             </ul>
         </li>
-        <li class="pure-menu-item {% if 'manual' == active_page %}pure-menu-selected{% endif %}">
-          <a href="#" class="pure-menu-link">
-            <i class="fa fa-cogs"></i>
-          </a>
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover
+            {% if 'manual' == active_page %}pure-menu-selected{% endif %}">
+            <a href="#" class="pure-menu-link">
+              <i class="fa fa-cogs"></i>
+            </a>
+            <ul class="pure-menu-children">
+                <li class="pure-menu-item">
+                  <a href="{{url_for('manual_text.index')}}" class="pure-menu-link">
+                    <i class="fa fa-commenting"></i>
+                  </a>
+                </li>
+                <li class="pure-menu-item">
+                  <a href="#" class="pure-menu-link">
+                    <i class="fa fa-group"></i>
+                  </a>
+                </li>
+            </ul>
         </li>
       </ul>
     </div>

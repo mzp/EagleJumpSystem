@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% set active_page = 'manual' -%}
+{% block content %}
+<ul>
+  {% for book in books %}
+    {% for vol in range(1, book.volume|int+1) %}
+    <li>
+      <a href="{{url_for('manual_text.edit', id=book.id, vol=vol)}}">
+        {{book.title}} &raquo; {{vol}}({{count(book.id, vol)}})
+      </a>
+    </i>
+    {% endfor %}
+  {% endfor %}
+</ul>
+{% endblock %}

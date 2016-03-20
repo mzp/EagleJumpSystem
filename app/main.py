@@ -3,6 +3,7 @@ from pages.books import books
 from pages.search import search
 from pages.text import text
 from pages.upload import upload
+from pages.manual_text import manual_text
 from pathlib import Path
 
 app = Flask(__name__)
@@ -11,6 +12,7 @@ app.register_blueprint(books)
 app.register_blueprint(search)
 app.register_blueprint(text)
 app.register_blueprint(upload)
+app.register_blueprint(manual_text)
 
 @app.route("/fonts/<path:filename>")
 def fonts(filename):
