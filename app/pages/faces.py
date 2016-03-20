@@ -6,14 +6,14 @@ import db.panels
 
 faces = Blueprint('faces', __name__)
 
-@faces.route("/manual/text")
+@faces.route("/faces")
 def index():
     def count(id, vol):
         return len(list(db.panels.find(id, vol)))
     books = db.books.all()
     return render_template('faces/index.html', books=books, count=count)
 
-@faces.route("/text/<id>/<vol>")
+@faces.route("/faces/<id>/<vol>")
 def detect(id, vol):
     panels = db.panels.find(id, vol)
     ident = commands.faces.start(panels)
