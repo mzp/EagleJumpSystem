@@ -7,7 +7,7 @@
 <div class="pure-g">
   {% for panel in panels %}
   <div class="pure-u-1-6 thumbnail">
-    <img class="thumbnail-image" src="{{panel.path}}" />
+    <img class="thumbnail-image" src="{{panel.path}}" title="{{panel.metadata.auto_script}}" />
   </div>
   {% endfor %}
 </div>

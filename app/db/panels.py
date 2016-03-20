@@ -1,4 +1,5 @@
 import cv2
+import db.metadata
 from pathlib import Path
 
 root = Path('./data/panel')
@@ -9,7 +10,8 @@ def __path_for(book_id, volume):
     return path
 
 def __make(path):
-    return { 'path': path }
+    metadata = db.metadata.find(path.as_posix())
+    return { 'path': path, 'metadata': metadata }
 
 def all():
     for path in root.glob('*/*/*.*'):
