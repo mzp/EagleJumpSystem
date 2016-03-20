@@ -9,9 +9,14 @@ def __path_for(book_id, volume):
     path.mkdir(parents=True, exist_ok=True)
     return path
 
+def __info(path):
+    (_, _, book_id, volume, name) = path.parts
+    return (book_id, volume, name)
+
 def __make(path):
     metadata = db.metadata.find(path.as_posix())
-    return { 'path': path, 'metadata': metadata }
+    (book_id, volume, name) = __info(path)
+    return { 'path': path, 'metadata': metadata, 'book_id': book_id, 'volume': volume, 'name': name }
 
 def all():
     for path in root.glob('*/*/*.*'):
