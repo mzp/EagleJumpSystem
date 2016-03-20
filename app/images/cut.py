@@ -54,16 +54,16 @@ class Cut:
 
     def store(self, xs, ys):
         self.y1.append(ys[-1])
-        if n == 0:
+        if self.n == 0:
             self.x1.append(xs[0])
-        elif np.abs(np.average(x1) - xs[0]) < 20:
+        elif np.abs(np.average(self.x1) - xs[0]) < 20:
             self.x1.append(xs[0])
         else:
             self.x2.append(xs[0])
-        self.xs = normalize(xs)
-        self.ys = normalize(ys)
-        self.nxs = map(sum, zip(xs, nxs))
-        self.nys = map(sum, zip(ys, nys))
+        self.xs = self.normalize(xs)
+        self.ys = self.normalize(ys)
+        self.nxs = map(sum, zip(xs, self.nxs))
+        self.nys = map(sum, zip(ys, self.nys))
         self.n += 1
 
     def nearest(self, xs, ys):
@@ -91,10 +91,10 @@ class Cut:
             return xs, ys
         elif self.n != 0:
             #print('estimated.')
-            xs_ = map(lambda x:x/n, self.nxs)
-            ys_ = map(lambda y:y/n, self.nys)
+            xs_ = list(map(lambda x:x/self.n, self.nxs))
+            ys_ = list(map(lambda y:y/self.n, self.nys))
             yoffset = ys_[7] - ys_[0]
-            x0, y_ = nearest(xs, ys)
+            x0, y_ = self.nearest(xs, ys)
             y0 = y_ - yoffset
             est_xs = [int(x0 + x) for x in xs_]
             est_ys = [int(y0 + y) for y in ys_]
