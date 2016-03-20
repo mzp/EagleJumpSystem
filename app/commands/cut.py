@@ -12,7 +12,11 @@ def get_logger(ident):
 
     formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(name)s - %(message)s')
 
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger(__name__ + '.' + str(ident))
+
+    # HACK: clear old handlers
+    logger.handlers = []
+
     sh = logging.StreamHandler()
     sh.setLevel(logging.DEBUG)
     sh.setFormatter(formatter)
