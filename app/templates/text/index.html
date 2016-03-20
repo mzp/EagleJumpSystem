@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<ul>
+  {% for book in books %}
+    {% for vol in range(book.volume|int) %}
+    <li>{{book.title}} &raquo; {{vol|int + 1}}({{count(book.id, vol|int+1)}})</i>
+    {% endfor %}
+  {% endfor %}
+</ul>
+{% endblock %}

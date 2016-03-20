@@ -1,6 +1,7 @@
 from flask import Flask, url_for, redirect, send_from_directory
 from pages.books import books
 from pages.search import search
+from pages.text import text
 from pages.upload import upload
 from pathlib import Path
 
@@ -8,6 +9,7 @@ app = Flask(__name__)
 app.config.update(DEBUG=True)
 app.register_blueprint(books)
 app.register_blueprint(search)
+app.register_blueprint(text)
 app.register_blueprint(upload)
 
 @app.route("/fonts/<path:filename>")
