@@ -1,41 +1,11 @@
 import db.panels
 import threading
 import tempfile
-import logging
-from pathlib import Path
+import commands
 from images.cut import Cut
 
-root = Path('./log')
-
-def path_for(ident):
-    return root / '{0}.log'.format(ident)
-
-def get_logger(ident):
-    path = path_for(ident)
-
-    formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(name)s - %(message)s')
-
-    logger = logging.getLogger(__name__ + '.' + str(ident))
-
-    # HACK: clear old handlers
-    logger.handlers = []
-
-    sh = logging.StreamHandler()
-    sh.setLevel(logging.DEBUG)
-    sh.setFormatter(formatter)
-
-    fh = logging.FileHandler(path.as_posix(), mode='w')
-    fh.setLevel(logging.DEBUG)
-    fh.setFormatter(formatter)
-
-    logger.setLevel(logging.DEBUG)
-    logger.addHandler(sh)
-    logger.addHandler(fh)
-
-    return logger
-
 def run(id, volume, images):
-    logger = get_logger(threading.get_ident())
+    logger = commands.get_logger(__name__, threading.get_ident())
     try:
         logger.info('Cut {0} {1}'.format(id, volume))
 
@@ -68,7 +38,3 @@ def start(id, volume, images):
             args=(id, volume, xs))
     thread.start()
     return thread.ident
-
-def show(ident):
-    with open(path_for(ident).as_posix(), "r") as file:
-        return file.read()

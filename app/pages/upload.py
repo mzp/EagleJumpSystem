@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 import db.books
+import commands
 import commands.cut
 
 upload = Blueprint('upload', __name__)
@@ -23,5 +24,5 @@ def create(id):
 
 @upload.route("/upload/<id>/log")
 def show(id):
-    content = commands.cut.show(id)
+    content = commands.show(id)
     return render_template('upload/show.html', content=content)
