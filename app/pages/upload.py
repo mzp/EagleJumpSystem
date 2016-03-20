@@ -16,7 +16,9 @@ def new(id):
 
 @upload.route("/upload/<id>/create", methods=['POST'])
 def create(id):
-    ident = commands.cut.start()
+    volume = request.form['volume']
+    images  = request.files.getlist('images')
+    ident = commands.cut.start(id, volume, images)
     return redirect(url_for('upload.show', id=ident))
 
 @upload.route("/upload/<id>/log")

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% set active_page = 'upload' -%}
 {% block content %}
-<form class="pure-form pure-form-stacked" action={{url_for('upload.create', id=book.id)}} method="POST">
+<form class="pure-form pure-form-stacked" action={{url_for('upload.create', id=book.id)}} method="POST" enctype="multipart/form-data">
   <label for="title">title</label>
   <input id="title" name="title" type="text" value="{{book.title}}" readonly />
 
