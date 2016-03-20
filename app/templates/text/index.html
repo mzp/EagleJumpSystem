@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+{% set active_page = 'auto' -%}
 {% block content %}
 <ul>
   {% for book in books %}
-    {% for vol in range(book.volume|int) %}
-    <li>{{book.title}} &raquo; {{vol|int + 1}}({{count(book.id, vol|int+1)}})</i>
+    {% for vol in range(1, book.volume|int+1) %}
+    <li>
+      <a href="{{url_for('text.detect', id=book.id, vol=vol)}}">
+        {{book.title}} &raquo; {{vol}}({{count(book.id, vol)}})
+      </a>
+    </i>
     {% endfor %}
   {% endfor %}
 </ul>
