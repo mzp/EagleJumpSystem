@@ -24,6 +24,11 @@
         {{panel.metadata.auto_script}}
       </div>
       <div class="pure-u-1">
+        {% if panel.metadata.script %}
+          <i class="fa fa-cogs"></i>
+        {% else %}
+          <i class="fa fa-magic"></i>
+        {% endif %}
         <input type="hidden" name="path" value="{{panel.path}}" />
         <textarea name="script" autofocus class="scriptForm-script">{{panel.metadata.script|default(panel.metadata.auto_script)}}</textarea>
         <button type="submit" class="scriptForm-submit pure-button pure-button-primary">
