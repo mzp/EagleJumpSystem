@@ -9,7 +9,7 @@ def __path_for(book_id, volume):
     return path
 
 def __make(path):
-    return { 'path': '/' / path }
+    return { 'path': path }
 
 def all():
     for path in root.glob('*/*/*.*'):
