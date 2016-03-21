@@ -77,6 +77,11 @@
                 </li>
             </ul>
         </li>
+        <li class="pure-menu-item {% if 'demo' == active_page %}pure-menu-selected{% endif %}">
+          <a href="{{url_for('demo.index')}}" class="pure-menu-link">
+            <i class="fa fa-terminal"></i>
+          </a>
+        </li>
       </ul>
     </div>
     <div id="content">

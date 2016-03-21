@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% set active_page = 'demo' -%}
+{% block content %}
+<form class="pure-form pure-form-stacked" action={{url_for('demo.detect')}} method="POST" enctype="multipart/form-data">
+  <select name="book">
+    {% for book in books %}
+      <option value="{{book.id}}">{{book.title}}</option>
+    {% endfor %}
+  </select>
+  <input id="image" name="image" type="file" accept="image/*" />
+  <button type="submit" class="pure-button pure-button-primary">
+    <i class="fa fa-terminal"></i>
+  </button>
+</form>
+{% endblock %}
