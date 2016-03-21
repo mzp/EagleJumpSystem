@@ -17,7 +17,7 @@ def update(path, auto_script=None, script=None, characters=None, others=None):
             data['others'] = others
         db.update(data, where('path') == path)
     else:
-        db.insert({ 'path': path, 'auto_script': auto_script, script: '', 'characters': [], 'others': [] })
+        db.insert({ 'path': path, 'auto_script': auto_script, script: script, 'characters': characters, 'others': others })
 
 def find(path):
     xs = __db().search(where('path') == path)
