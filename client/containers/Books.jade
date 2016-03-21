@@ -1,1 +1,22 @@
-h1 Hello
+#nav
+  .books
+    each book in books
+      - var className = book.selected ? 'books_item books_item-selected' : 'books_item';
+      div(className = className, key=book.id, onClick=select.bind(this, book.id))
+        .books_title= book.title
+        .books_volume vol. 1-
+          = book.volume
+#main
+  if book
+    form.pure-form.pure-form-stacked.bookForm
+      label Book ID(unique)
+      input.bookForm_input(placeholder="zoi", value=book.id)
+
+      label Title
+      input.bookForm_input(placeholder="NEW GAME!", value=book.title)
+
+      label Volume
+      input.bookForm_input(placeholder="3", value=book.volume, type="number")
+
+      button.pure-button.pure-button-primary.bookForm_submit(type="submit")
+        i.fa.fa-check
