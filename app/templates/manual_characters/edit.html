@@ -35,7 +35,7 @@
           {% set n = loop.index - 1 %}
           {% set current = panel.metadata.characters[n] if 'characters' in panel.metadata else '' %}
           <div class="pure-u-1-12">
-           <img src="/{{ face }}" class="charactersForm-face" />
+            <img src="/{{ face }}" class="charactersForm-face" />
             <select name="character[{{n}}]">
               {{ option('', 'none', current) }}
               {% for c in book.characters %}
