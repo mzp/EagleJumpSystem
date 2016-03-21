@@ -1,5 +1,6 @@
 app/static/fonts
 app/static/*.css
+app/static/bundle
 data/
 tmp/
 
