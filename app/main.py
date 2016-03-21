@@ -1,5 +1,6 @@
 from flask import Flask, url_for, redirect, send_from_directory
 from pages.books import books
+from pages.characters import characters
 from pages.faces import faces
 from pages.search import search
 from pages.text import text
@@ -12,6 +13,7 @@ from pathlib import Path
 app = Flask(__name__)
 app.config.update(DEBUG=True)
 app.register_blueprint(books)
+app.register_blueprint(characters)
 app.register_blueprint(faces)
 app.register_blueprint(learn)
 app.register_blueprint(manual_characters)
