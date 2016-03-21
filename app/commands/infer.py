@@ -10,14 +10,12 @@ def run(id, panels):
         logger.info('Character infer detection')
 
         tags = db.models.tags(id)
-        reuse = False
         for panel in panels:
             logger.info(panel['path'])
             auto_characters = []
             for face in panel['faces']:
                 logger.info(face)
-                prediction = images.learn.infer(db.models.path_for(id).as_posix(), len(tags), face.as_posix(), reuse=reuse)
-                reuse = True
+                prediction = images.learn.infer(db.models.path_for(id).as_posix(), len(tags), face.as_posix())
                 tag = tags[prediction]
                 logger.info('{0} => {1}'.format(prediction, tag))
                 auto_characters.append(tag)
