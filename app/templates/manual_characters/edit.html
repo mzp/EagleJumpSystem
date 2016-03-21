@@ -28,14 +28,27 @@
       </div>
       <div class="pure-u-1-3">
         <i class="fa fa-magic"></i>
+        {% set auto_characters = panel.metadata.get('auto_characters')|default([]) %}
+        {% for face in panel.faces %}
+        <div class="characterInfer">
+          <img src="/{{ face }}" class="characterInfer-face" /><br />
+          {{ character_names[auto_characters[loop.index0]] }}
+        </div>
+        {% endfor %}
       </div>
       <div class="pure-u-1">
         <p><i class="fa fa-crop"></i></p>
         {% for face in panel.faces %}
-          {% set n = loop.index - 1 %}
-          {% set current = panel.metadata.characters[n] if 'characters' in panel.metadata else '' %}
+          {% set n = loop.index0 %}
+          {% set inputed = panel.metadata.characters[n] if 'characters' in panel.metadata else None %}
+          {% set current = input|default(auto_characters[n]) %}
           <div class="pure-u-1-12">
             <img src="/{{ face }}" class="charactersForm-face" />
+            {% if inputed %}
+              <i class="fa fa-cogs"></i>
+            {% else %}
+              <i class="fa fa-magic"></i>
+            {% endif %}
             <select name="character[{{n}}]">
               {{ option('', 'none', current) }}
               {% for c in book.characters %}

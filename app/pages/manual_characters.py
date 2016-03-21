@@ -22,7 +22,18 @@ def edit(id, vol):
         panel = utils.find(panels, lambda panel: panel['path'].as_posix() == path)
     else:
         panel = utils.find(panels, utils.is_empty('script'))
-    return render_template('manual_characters/edit.html', panel=panel, panels=panels, id=id, vol=vol, book=book)
+
+    character_names = {}
+    for character in book['characters']:
+        character_names[character['tag']] = character['name']
+
+    return render_template('manual_characters/edit.html',
+            panel=panel,
+            panels=panels,
+            id=id,
+            vol=vol,
+            book=book,
+            character_names=character_names)
 
 @manual_characters.route("/manual/characters/<id>/<vol>/update", methods=['POST'])
 def update(id, vol):
