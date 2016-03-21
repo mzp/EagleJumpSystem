@@ -21,12 +21,12 @@ def inference(num_classes, images_placeholder, keep_prob):
     # 重みを標準偏差0.1の正規分布で初期化
     def weight_variable(shape):
       initial = tf.truncated_normal(shape, stddev=0.1)
-      return tf.Variable(initial)
+      return tf.get_variable('weight', initializer=initial)
 
     # バイアスを標準偏差0.1の正規分布で初期化
     def bias_variable(shape):
       initial = tf.constant(0.1, shape=shape)
-      return tf.Variable(initial)
+      return tf.get_variable('bias', initializer=initial)
 
     # 畳み込み層の作成
     def conv2d(x, W):
@@ -41,28 +41,28 @@ def inference(num_classes, images_placeholder, keep_prob):
     x_image = tf.reshape(images_placeholder, [-1, IMAGE_SIZE, IMAGE_SIZE, DIM])
 
     # 畳み込み層1の作成
-    with tf.name_scope('conv1') as scope:
+    with tf.variable_scope('conv1') as scope:
         W_conv1 = weight_variable([5, 5, DIM, 32])
         b_conv1 = bias_variable([32])
         h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
 
     # プーリング層1の作成
-    with tf.name_scope('pool1') as scope:
+    with tf.variable_scope('pool1') as scope:
         h_pool1 = max_pool_2x2(h_conv1)
 
     # 畳み込み層2の作成
-    with tf.name_scope('conv2') as scope:
+    with tf.variable_scope('conv2') as scope:
         W_conv2 = weight_variable([5, 5, 32, 64])
         b_conv2 = bias_variable([64])
         h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
 
     # プーリング層2の作成
-    with tf.name_scope('pool2') as scope:
+    with tf.variable_scope('pool2') as scope:
         h_pool2 = max_pool_2x2(h_conv2)
 
     # 全結合層1の作成
     SIZE = int(IMAGE_SIZE / 4)
-    with tf.name_scope('fc1') as scope:
+    with tf.variable_scope('fc1') as scope:
         W_fc1 = weight_variable([SIZE*SIZE*64, 1024])
         b_fc1 = bias_variable([1024])
         h_pool2_flat = tf.reshape(h_pool2, [-1, SIZE*SIZE*64])
@@ -71,12 +71,12 @@ def inference(num_classes, images_placeholder, keep_prob):
         h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
 
     # 全結合層2の作成
-    with tf.name_scope('fc2') as scope:
+    with tf.variable_scope('fc2') as scope:
         W_fc2 = weight_variable([1024, num_classes])
         b_fc2 = bias_variable([num_classes])
 
     # ソフトマックス関数による正規化
-    with tf.name_scope('softmax') as scope:
+    with tf.variable_scope('softmax') as scope:
         y_conv=tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
 
     # 各ラベルの確率のようなものを返す

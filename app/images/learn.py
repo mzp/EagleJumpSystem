@@ -75,8 +75,9 @@ def train(logger, model_path, num_classes, data):
     train_label = np.asarray(train_label)
 
     with tf.Graph().as_default():
-        # create expression
-        acc = __accuracy(num_classes)
+        with tf.variable_scope('ejs') as scope:
+            # create expression
+            acc = __accuracy(num_classes)
 
         saver = tf.train.Saver()
 
