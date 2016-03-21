@@ -22,6 +22,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
     "gulp-plumber": "^1.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-stylus": "^2.3.1",

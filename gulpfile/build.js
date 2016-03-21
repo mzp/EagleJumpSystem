@@ -5,6 +5,7 @@ var browserify = require('browserify');
 var source = require( 'vinyl-source-stream' );
 var plumber = require('gulp-plumber');
 var react_jade = require('react-jade');
+var livereload = require('gulp-livereload');
 
 PAGES = ['books'];
 
@@ -18,7 +19,8 @@ PAGES.forEach(function(name) {
       .bundle()
       .pipe(plumber())
       .pipe( source( name + '.js' ) )
-      .pipe( gulp.dest( './app/static/bundle' ));
+      .pipe( gulp.dest( './app/static/bundle' ))
+      .pipe(livereload());
   });
 });
 
