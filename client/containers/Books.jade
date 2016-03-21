@@ -1,4 +1,6 @@
 #nav
+  .bookAdd(onClick=addBook)
+    i.fa.fa-plus
   .books
     each book in books
       - var className = book.selected ? 'books_item books_item-selected' : 'books_item';
@@ -10,7 +12,7 @@
   if book
     .pure-form.pure-form-stacked.bookForm
       label Book ID(unique)
-      input.bookForm_input(placeholder="zoi", value=book.id, onChange=changeID)
+      input.bookForm_input(placeholder="zoi", value=book.id, onChange=changeID, readOnly=!book.draft)
 
       label Title
       input.bookForm_input(placeholder="NEW GAME!", value=book.title, onChange=changeTitle)
@@ -25,7 +27,7 @@
             input.pure-u-1-3(type="text", value=character.tag, onChange=changeTag.bind(this,index))
             input.pure-u-1-3(type="text", value=character.name, onChange=changeName.bind(this, index))
             input.pure-u-1-3(type="text", value=character.color, onChange=changeColor.bind(this, index))
-      div(onClick=addCharacter)
+      .characterAdd(onClick=addCharacter)
         i.fa.fa-plus
 
       button.pure-button.pure-button-primary.bookForm_submit(onClick=save.bind(this, book))

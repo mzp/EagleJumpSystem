@@ -3,6 +3,7 @@ import server from '../gateway/server';
 
 export default {
   select: createAction('books.select'),
+  addBook: createAction('books.addBook'),
   changeID: createAction('books.changeID', (e) => e.target.value),
   changeTitle: createAction('books.changeTitle', (e) => e.target.value),
   changeVolume: createAction('books.changeVolume', (e) => e.target.value),

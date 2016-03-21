@@ -31,12 +31,28 @@ function updateCharacter(books, n, props) {
   });
 }
 
+function randomId() {
+  return Math.floor(10000000*Math.random()).toString(16)
+}
+
 export default handleActions({
   'books.select': (state, action) => {
     const id = action.payload;
     return state.map((book) => {
       return { ...book, selected: book.id == id };
     })
+  },
+  'books.addBook': (state) => {
+    const books = updateProps(state, { selected: false });
+    const book = {
+      id: randomId(),
+      title: null,
+      volume: 1,
+      characters: [],
+      selected: true,
+      draft: true
+    };
+    return [  ...books, book ];
   },
   'books.changeID': (state, action) => {
     return updateProps(state, { id: action.payload });
@@ -63,4 +79,7 @@ export default handleActions({
   'books.changeColor': (state, { payload: { index, value }}) => {
     return updateCharacter(state, index, { color: value });
   },
+  'books.save': (state) => {
+    return updateProps(state, { draft: false });
+  }
 }, window.__books__ || []);
