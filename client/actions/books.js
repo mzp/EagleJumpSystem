@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
+import server from '../gateway/server';
 
 export default {
   select: createAction('books.select'),
@@ -14,5 +15,6 @@ export default {
   }),
   changeColor: createAction('books.changeColor', (n, e) => {
       return { index: n, value: e.target.value }
-  })
+  }),
+  save: createAction('books.save', server.saveBook)
 }

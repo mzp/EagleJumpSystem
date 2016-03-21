@@ -18,3 +18,10 @@ def update(id, title, volume, characters):
         'volume': volume,
         'characters': characters
         }, where('id') == id)
+
+def create_or_update(id, title, volume, characters):
+    db = __db()
+    if db.contains(where('id') == id):
+        update(id, title, volume, characters)
+    else:
+        create(id, title, volume, characters)

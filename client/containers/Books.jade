@@ -28,5 +28,5 @@
       div(onClick=addCharacter)
         i.fa.fa-plus
 
-      button.pure-button.pure-button-primary.bookForm_submit
+      button.pure-button.pure-button-primary.bookForm_submit(onClick=save.bind(this, book))
         i.fa.fa-check

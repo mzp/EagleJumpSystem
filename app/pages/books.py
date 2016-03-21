@@ -27,6 +27,15 @@ def index():
     books = db.books.all()
     return render_template('books/index.html', books=books)
 
+@books.route("/books/save", methods=['POST'])
+def save():
+    db.books.create_or_update(
+            request.json['id'],
+            request.json['title'],
+            request.json['volume'],
+            request.json['characters'])
+    return 'ok'
+
 @books.route("/books/new")
 def new():
     url = url_for('books.create')
