@@ -16,7 +16,7 @@ def index():
 @characters.route("/characters/<id>/<vol>")
 def infer(id, vol):
     panels = db.panels.find(id, vol)
-    ident = commands.infer.start(panels)
+    ident = commands.infer.start(id, panels)
     return redirect(url_for('characters.show', id=ident))
 
 @characters.route("/characters/<id>/log")

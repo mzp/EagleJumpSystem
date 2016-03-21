@@ -21,12 +21,17 @@ def __label(num_classes, k):
     tmp[k] = 1
     return tmp
 
-def __accuracy(num_classes):
+def __logits(num_classes):
     images_placeholder = tf.placeholder("float", shape=(None, IMAGE_PIXELS))
-    labels_placeholder = tf.placeholder("float", shape=(None, num_classes))
     keep_prob = tf.placeholder("float")
-
     logits = inference(num_classes, images_placeholder, keep_prob)
+    return (images_placeholder, keep_prob, logits)
+
+def __accuracy(num_classes):
+    labels_placeholder = tf.placeholder("float", shape=(None, num_classes))
+
+    (images_placeholder, keep_prob, logits) = __logits(num_classes)
+
     loss_value = loss(logits, labels_placeholder)
     train_op = training(loss_value, LEARNING_RATE)
     acc = accuracy(logits, labels_placeholder)
@@ -86,3 +91,20 @@ def train(logger, model_path, num_classes, data):
 
     # save trained model
     saver.save(sess, model_path)
+
+def infer(model_path, num_classes, path, reuse=False):
+    with tf.variable_scope('ejs', reuse=reuse) as scope:
+        (images_placeholder, keep_prob, logits) = __logits(num_classes)
+
+    sess = tf.InteractiveSession()
+    saver = tf.train.Saver()
+    sess.run(tf.initialize_all_variables())
+    saver.restore(sess, model_path)
+    saver.restore(sess, model_path)
+
+    image = __read(path)
+    prediction = np.argmax(logits.eval(feed_dict={
+          images_placeholder: [image],
+          keep_prob: 1.0 })[0])
+    sess.close()
+    return prediction

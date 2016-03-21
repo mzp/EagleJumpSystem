@@ -16,3 +16,6 @@ def update(id, tags):
         db.update({ 'tags': tags }, where('id') == id)
     else:
         db.insert({ 'id': id, 'tags': tags })
+
+def tags(id):
+    return __db().search(where('id') == id)[0]['tags']
