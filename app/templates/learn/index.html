@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% set active_page = 'auto' -%}
+{% block content %}
+<ul>
+  {% for book in books %}
+  <li><a href="{{url_for('learn.select', id=book.id)}}">{{book.title}}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
