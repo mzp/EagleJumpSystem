@@ -10,12 +10,8 @@ def __panels(id):
     book = db.books.find(id)
     for vol in range(1, int(book['volume']) +1):
         for panel in db.panels.find(book['id'], vol):
-            if 'faces' not in panel:
-                continue
-            if 'characters' not in panel['metadata']:
-                continue
-
-            yield panel
+            if panel.get('faces') and panel['metadata'].get('characters'):
+                yield panel
 
 @learn.route("/learn")
 def index():
