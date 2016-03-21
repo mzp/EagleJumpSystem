@@ -41,7 +41,7 @@ def start(id):
     for character in book['characters']:
         if request.form.get(character['tag']) == 'on':
             tags.append(character['tag'])
-    ident = commands.learn.start(panels, tags)
+    ident = commands.learn.start(id, panels, tags)
     return redirect(url_for('learn.show', id=ident))
 
 @learn.route("/learn/<id>/log")

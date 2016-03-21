@@ -61,7 +61,7 @@ def __train(logger, train_image, train_label, model, batch_size=10, max_steps=20
 
     return sess
 
-def start(logger, model_path, num_classes, data):
+def train(logger, model_path, num_classes, data):
     # setup training label
     train_image = []
     train_label = []
