@@ -7,11 +7,15 @@ const template = require('react-jade').compileFile(__dirname + '/Books.jade');
 
 class Books extends React.Component {
   render() {
-    const { books, select } = this.props;
+    const { books } = this.props;
     const book = books.find((book) => book.selected);
-    return template({ books, book, select });
+    return template({
+      book,
+      ...this.props
+    });
   }
 }
+
 export default connect(
     (state)=> state,
     (dispatch) => bindActionCreators(actions, dispatch)
