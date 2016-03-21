@@ -7,7 +7,7 @@
       <a href="{{url_for('manual_text.edit', id=id, vol=vol, path=p.path)}}">
         <img src="/{{ p.path }}" class="scriptThumbnail-image">
         <span class="scriptThumbnail-script">
-          {{p.metadata.script|default(p.metadata.auto_script)}}
+          {{p.metadata.script or p.metadata.auto_script}}
         </span>
       </a>
     </div>
