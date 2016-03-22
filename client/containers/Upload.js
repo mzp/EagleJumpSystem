@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../actions/volume';
 import { bindActionCreators } from 'redux';
 import LogViewer from '../components/LogViewer';
+import VolumeSelect from '../components/VolumeSelect';
 
 const template = require('react-jade').compileFile(__dirname + '/Upload.jade');
 
@@ -16,6 +17,7 @@ class Upload extends React.Component {
     return template({
       selectFiles: ::this.selectFiles,
       LogViewer,
+      VolumeSelect,
       ...this.props
     });
   }

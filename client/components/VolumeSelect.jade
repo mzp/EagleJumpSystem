@@ -1,0 +1,8 @@
+.volumeSelect
+  each book in books
+    div(key=book.id)
+      .volumeSelect_title= book.title
+      - for (var i = 1; i <= book.volume; i++)
+        - var className = (book.id == current.book_id && i == current.volume) ? '  volumeSelect_volume-selected' : '';
+        div(className = 'volumeSelect_volume' + className, key=i, onClick=onClick.bind(this, book.id, i))
+          = 'Vol.' + i
