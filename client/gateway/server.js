@@ -30,6 +30,17 @@ export default {
     });
   },
 
+  textDetect: (book_id, vol) => {
+    return new Promise((resolve, reject) => {
+      request
+        .get(`/text/${book_id}/${vol}` )
+        .end((err, res) => {
+          if(err) { reject(err); }
+          else { resolve(res); }
+        });
+    });
+  },
+
   fetch: (id) => {
     return new Promise((resolve, reject) => {
       request.get(`/log/${id}`)
