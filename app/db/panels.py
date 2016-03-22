@@ -23,6 +23,18 @@ def all():
     for path in root.glob('*/*/*.*'):
         yield __make(path)
 
+def count_by_books(books):
+    def count(id, vol):
+        return len(list(db.panels.find(id, vol)))
+
+    info = {}
+    for book in books:
+        info[book['id']] = {}
+
+        for vol in range(1, 1 + int(book['volume'])):
+            info[book['id']][vol] = count(book['id'], vol)
+    return info
+
 def update(book_id, volume, filename, position, image):
     path = Path(filename)
     name, ext = path.stem, path.suffix

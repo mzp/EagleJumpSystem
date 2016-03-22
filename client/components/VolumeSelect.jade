@@ -6,3 +6,5 @@
         - var className = (book.id == current.book_id && i == current.volume) ? '  volumeSelect_volume-selected' : '';
         div(className = 'volumeSelect_volume' + className, key=i, onClick=onClick.bind(this, book.id, i))
           = 'Vol.' + i
+          span.volumeSelect_panelCount
+            = '(' + window.__panel_count_[book.id][i] + ')'
