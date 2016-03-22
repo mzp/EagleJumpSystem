@@ -8,10 +8,9 @@ text = Blueprint('text', __name__)
 
 @text.route("/text")
 def index():
-    def count(id, vol):
-        return len(list(db.panels.find(id, vol)))
     books = db.books.all()
-    return render_template('text/index.html', books=books, count=count)
+    panel_count = db.panels.count_by_books(books)
+    return render_template('text/index.html', books=books, panel_count=panel_count)
 
 @text.route("/text/<id>/<vol>")
 def detect(id, vol):
