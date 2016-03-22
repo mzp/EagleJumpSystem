@@ -4,6 +4,10 @@ export default handleActions({
   'volume.select': (_, action) => {
     return action.payload
   },
+  'volume.text_detect': (state, action) => {
+    const log_id = action.payload.text;
+    return { ...state, log_id, log: '' }
+  },
   'volume.upload': (state, action) => {
     const log_id = action.payload.text;
     return { ...state, log_id, log: '' }

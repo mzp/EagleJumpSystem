@@ -1,6 +1,8 @@
 #nav
   VolumeSelect(books=books, onClick=select, current=volume)
 #main
-  if volume.book_id
-    ConfirmButton(icon='commenting')
-
+  if volume.log_id
+    LogViewer(value=volume.log, polling=fetch.bind(this, volume.log_id), interval=1000)
+  else
+    if volume.book_id
+      ConfirmButton(icon='commenting', onClick=run)
