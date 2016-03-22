@@ -62,8 +62,8 @@ class Cut:
             self.x2.append(xs[0])
         self.xs = self.normalize(xs)
         self.ys = self.normalize(ys)
-        self.nxs = map(sum, zip(xs, self.nxs))
-        self.nys = map(sum, zip(ys, self.nys))
+        self.nxs = list(map(sum, zip(self.xs, self.nxs)))
+        self.nys = list(map(sum, zip(self.ys, self.nys)))
         self.n += 1
 
     def nearest(self, xs, ys):
@@ -90,9 +90,11 @@ class Cut:
         if len(ys) == 8 and len(xs) == 4:
             return xs, ys
         elif self.n != 0:
-            #print('estimated.')
             xs_ = list(map(lambda x:x/self.n, self.nxs))
             ys_ = list(map(lambda y:y/self.n, self.nys))
+            print(self.nxs)
+            print(self.nys)
+            print(ys_)
             yoffset = ys_[7] - ys_[0]
             x0, y_ = self.nearest(xs, ys)
             y0 = y_ - yoffset
