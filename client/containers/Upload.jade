@@ -9,7 +9,7 @@
             = i
 #main
   if volume.log_id
-    Log(value=volume.log, polling=fetch.bind(this, volume.log_id), interval=500)
+    LogViewer(value=volume.log, polling=fetch.bind(this, volume.log_id), interval=1000)
   else
     if volume.book_id
       input(type='file', multiple=true, accept='image/*', onChange=selectFiles)

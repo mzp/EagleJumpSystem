@@ -1,9 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import actions from '../actions/volume';
-import { bindActionCreators } from 'redux';
 
-export default class Log extends React.Component {
+export default class LogViewer extends React.Component {
   componentWillMount() {
     this.intervals = [];
   }
