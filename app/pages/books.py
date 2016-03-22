@@ -3,25 +3,6 @@ import db.books
 
 books = Blueprint('books', __name__)
 
-def __parse(data):
-    id = data['id']
-    title = data['title']
-    volume = data['volume']
-    characters = [
-        {
-            'tag': data['tag[%d]' % i],
-            'name': data['name[%d]' % i],
-            'color': data['color[%d]' % i]
-        }
-        for i in range(10) if data['name[%d]' % i]
-    ]
-    return {
-        'id': id,
-        'title': title,
-        'volume': volume,
-        'characters': characters
-    }
-
 @books.route("/books")
 def index():
     books = db.books.all()
@@ -35,24 +16,3 @@ def save():
             request.json['volume'],
             request.json['characters'])
     return 'ok'
-
-@books.route("/books/new")
-def new():
-    url = url_for('books.create')
-    return render_template('books/form.html', url=url)
-
-@books.route("/books/create", methods=['POST'])
-def create():
-    db.books.create(**__parse(request.form))
-    return redirect(url_for('books.index'))
-
-@books.route("/books/<id>/edit")
-def edit(id):
-    book = db.books.find(id)
-    url = url_for('books.update', id=id)
-    return render_template('books/form.html', url=url, readonly=True, **book)
-
-@books.route("/books/<id>/update", methods=['POST'])
-def update(id):
-    db.books.update(**__parse(request.form))
-    return redirect(url_for('books.edit', id=id))
