@@ -28,8 +28,9 @@
             input.pure-u-1-3(type="text", value=character.tag, onChange=changeTag.bind(this,index))
             input.pure-u-1-3(type="text", value=character.name, onChange=changeName.bind(this, index))
             input.pure-u-1-3(type="text", value=character.color, onChange=changeColor.bind(this, index))
-      .characterAdd(onClick=addCharacter)
-        i.fa.fa-plus
+      .characterActions
+        .characterActions_add(onClick=addCharacter)
+          i.fa.fa-plus
 
       button.pure-button.pure-button-primary.bookForm_submit(onClick=save.bind(this, book))
         i.fa.fa-check
