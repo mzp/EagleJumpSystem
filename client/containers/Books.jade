@@ -1,6 +1,7 @@
 #nav
-  .bookAdd(onClick=addBook)
-    i.fa.fa-plus
+  .bookActions
+    span.bookActions_add(onClick=addBook)
+      i.fa.fa-plus
   .books
     each book in books
       - var className = book.selected ? 'books_item books_item-selected' : 'books_item';
