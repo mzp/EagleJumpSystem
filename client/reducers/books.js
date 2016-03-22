@@ -20,6 +20,7 @@ function updateCharacter(books, n, props) {
   return map(books, (book) => {
     return {
       ...book,
+      dirty: true,
       characters: book.characters.map((character, index) => {
         if(index == n) {
           return { ...character, ...props };
@@ -50,23 +51,25 @@ export default handleActions({
       volume: 1,
       characters: [],
       selected: true,
-      draft: true
+      draft: true,
+      dirty: true
     };
     return [  ...books, book ];
   },
   'books.changeID': (state, action) => {
-    return updateProps(state, { id: action.payload });
+    return updateProps(state, { id: action.payload, dirty: true });
   },
   'books.changeTitle': (state, action) => {
-    return updateProps(state, { title: action.payload });
+    return updateProps(state, { title: action.payload, dirty: true });
   },
   'books.changeVolume': (state, action) => {
-    return updateProps(state, { volume: action.payload });
+    return updateProps(state, { volume: action.payload, dirty: true });
   },
   'books.addChraracter': (state) => {
     return map(state, (book) => {
       return {
         ...book,
+        dirty: true,
         characters: [ ...book.characters, { tag: null, name: null, color: null } ] }
     });
   },
@@ -80,6 +83,6 @@ export default handleActions({
     return updateCharacter(state, index, { color: value });
   },
   'books.save': (state) => {
-    return updateProps(state, { draft: false });
+    return updateProps(state, { draft: false, dirty: false });
   }
 }, window.__books__ || []);
