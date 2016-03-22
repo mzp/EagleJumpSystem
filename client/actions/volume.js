@@ -7,5 +7,6 @@ export default {
   }),
   upload: createAction('volume.batch', server.upload),
   textDetect: createAction('volume.batch', server.textDetect),
+  faceDetect: createAction('volume.batch', server.faceDetect),
   fetch: createAction('volume.fetch', server.fetch)
 }

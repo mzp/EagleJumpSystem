@@ -7,7 +7,7 @@ var plumber = require('gulp-plumber');
 var react_jade = require('react-jade');
 var livereload = require('gulp-livereload');
 
-PAGES = ['books', 'upload', 'text'];
+PAGES = ['books', 'upload', 'text', 'faces'];
 
 PAGES.forEach(function(name) {
   gulp.task('build:' + name, function() {
