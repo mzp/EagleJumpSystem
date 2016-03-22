@@ -10,6 +10,7 @@ from pages.learn import learn
 from pages.manual_characters import manual_characters
 from pages.manual_text import manual_text
 from pathlib import Path
+import commands
 
 app = Flask(__name__)
 app.config.update(DEBUG=True)
@@ -37,6 +38,10 @@ def data(filename):
 def tmp(filename):
     root = Path('./tmp').resolve()
     return send_from_directory(root.as_posix(), filename)
+
+@app.route("/log/<id>")
+def log(id):
+    return commands.show(id)
 
 if __name__ == "__main__":
     app.run()
