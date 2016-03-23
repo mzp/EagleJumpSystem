@@ -22,7 +22,7 @@ class Learn extends React.Component {
   start() {
     const { books, characters, characterAction } = this.props;
     const book = books.find((book) => book.selected);
-    const tags = Object.keys(characters).filter((tag) => characters[tag].selected);
+    const tags = Object.keys(characters).filter((tag) => (characters[tag] || {}).selected);
     characterAction.learn(book.id, tags);
   }
 

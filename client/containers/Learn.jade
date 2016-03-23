@@ -7,7 +7,7 @@
     if book
       .characterSelect
         each tag in currentTags
-          - var character = characters[tag];
+          - var character = characters[tag] || { faces: [] };
           - var className = character.selected ? 'characterSelect_character characterSelect_character-selected' : 'characterSelect_character';
 
           div(className=className, key=tag, onClick=characterAction.select.bind(this, tag))
