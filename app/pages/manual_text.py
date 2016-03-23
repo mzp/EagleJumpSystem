@@ -7,10 +7,9 @@ manual_text = Blueprint('manual_text', __name__)
 
 @manual_text.route("/manual/text")
 def index():
-    def count(id, vol):
-        return len(list(db.panels.find(id, vol)))
     books = db.books.all()
-    return render_template('manual_text/index.html', books=books, count=count)
+    panel_count = db.panels.count_by_books(books)
+    return render_template('manual_text/index.html', books=books, panel_count=panel_count)
 
 @manual_text.route("/manual/text/<id>/<vol>")
 def edit(id, vol):
