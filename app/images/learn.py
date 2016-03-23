@@ -82,7 +82,7 @@ def train(logger, model_path, num_classes, data):
     train_label = np.asarray(train_label)
 
     with tf.Graph().as_default():
-        with tf.variable_scope('ejs', reuse=reuse) as scope:
+        with tf.variable_scope('ejs', reuse=None) as scope:
             reuse = True
             # create expression
             acc = __accuracy(num_classes)
