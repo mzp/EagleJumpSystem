@@ -1,11 +1,13 @@
 var gulp = require('gulp');
 
 var fontAwesome = require('node-font-awesome');
+var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
 var stylus = require('gulp-stylus');
 
 gulp.task('assets:css', function () {
   gulp.src('./assets/stylesheets/main.styl')
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(stylus({
       'include css': true,

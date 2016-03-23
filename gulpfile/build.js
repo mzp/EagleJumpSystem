@@ -16,6 +16,10 @@ gulp.task('build', function() {
       })
       .transform(react_jade)
       .bundle()
+      .on('error', function (err) {
+        console.log(err.toString());
+        this.emit("end");
+      })
       .pipe(plumber())
       .pipe( source( 'main.js' ) )
       .pipe( gulp.dest( './app/static/bundle' ))
