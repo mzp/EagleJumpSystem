@@ -3,6 +3,7 @@
 {% block content %}
 <script type="text/javascript">
 window.__books__ = {{books|tojson|safe}};
+window.__panels__ = {{panels|safe}};
 window.__panel_count_ = {{panel_count|tojson|safe}};
 </script>
 <div id="manual-text-root"></div>

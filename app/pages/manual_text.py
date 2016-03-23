@@ -2,14 +2,16 @@ from flask import Blueprint, render_template, url_for, request, redirect
 import db.books
 import db.panels
 import utils
+import custom_json
 
 manual_text = Blueprint('manual_text', __name__)
 
 @manual_text.route("/manual/text")
 def index():
     books = db.books.all()
+    panels = custom_json.Encoder().encode(db.panels.group_by(books))
     panel_count = db.panels.count_by_books(books)
-    return render_template('manual_text/index.html', books=books, panel_count=panel_count)
+    return render_template('manual_text/index.html', books=books, panel_count=panel_count, panels=panels)
 
 @manual_text.route("/manual/text/<id>/<vol>")
 def edit(id, vol):
