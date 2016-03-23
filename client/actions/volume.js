@@ -5,8 +5,8 @@ export default {
   select: createAction('volume.select', (book_id, volume) => {
     return { book_id, volume }
   }),
-  upload: createAction('volume.batch', server.upload),
-  textDetect: createAction('volume.batch', server.textDetect),
-  faceDetect: createAction('volume.batch', server.faceDetect),
-  fetch: createAction('volume.fetch', server.fetch)
+  upload: createAction('log.batch', server.upload),
+  textDetect: createAction('log.batch', server.textDetect),
+  faceDetect: createAction('log.batch', server.faceDetect),
+  fetch: createAction('log.fetch', server.fetch)
 }
