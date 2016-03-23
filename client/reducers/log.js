@@ -9,6 +9,9 @@ export default handleActions({
     const content = action.payload.text;
     return { ...state, content }
   },
+  'books.select': (state, action) => {
+    return {}
+  },
   'volume.select': (state, action) => {
     return {}
   },
