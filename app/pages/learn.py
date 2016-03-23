@@ -30,17 +30,6 @@ def index():
     characters = __group_by(books)
     return render_template('learn/index.html', books=books, characters=characters)
 
-@learn.route("/learn/<id>")
-def select(id):
-    book = db.books.find(id)
-    characters = {}
-    for panel in __panels(id):
-        for (face, character) in zip(panel['faces'], panel['metadata']['characters']):
-            if character not in characters:
-                characters[character] = []
-            characters[character].append(face)
-    return render_template('learn/select.html', book=book, characters=characters)
-
 @learn.route("/learn/<id>/start", methods=['POST'])
 def start(id):
     book = db.books.find(id)
@@ -48,8 +37,3 @@ def start(id):
     tags = request.json['tags']
     ident = commands.learn.start(id, panels, tags)
     return str(ident)
-
-@learn.route("/learn/<id>/log")
-def show(id):
-    content = commands.show(id)
-    return render_template('learn/show.html', content=content)
