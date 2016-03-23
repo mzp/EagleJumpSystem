@@ -2,4 +2,9 @@
   #nav
     VolumeSelect(books=books, onClick=volumeAction.select, current=volume)
   #middle
+    each panel in panels
+      .scriptThumbnail(key=panel.path)
+        img.scriptThumbnail_image(src='/'+panel.path)
+        span.scriptThumbnail_script
+          =panel.metadata.script || panel.metadata.auto_script
   #main
