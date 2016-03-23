@@ -1,4 +1,16 @@
 #nav
-  BookSelect(books=books, onClick=select)
+  BookSelect(books=books, onClick=bookAction.select)
 #main
-  ConfirmButton(icon='tasks')
+  if book
+    .characterSelect
+      each tag in currentTags
+        - var character = characters[tag];
+        - var className = character.selected ? 'characterSelect_character characterSelect_character-selected' : 'characterSelect_character';
+
+        div(className=className, key=tag, onClick=characterAction.select.bind(this, tag))
+          .characterSelect_name= name(tag) + '(' + character.faces.length +')'
+          .characterSelect_faces
+            each face in character.faces.slice(0, 10)
+              img.characterSelect_face(src=face, key=face)
+
+      ConfirmButton(icon='tasks')

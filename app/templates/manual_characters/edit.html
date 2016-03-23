@@ -41,7 +41,7 @@
         {% for face in panel.faces %}
           {% set n = loop.index0 %}
           {% set inputed = panel.metadata.characters[n] if 'characters' in panel.metadata else None %}
-          {% set current = input|default(auto_characters[n]) %}
+          {% set current = inputed|default(auto_characters[n]) %}
           <div class="pure-u-1-12">
             <img src="/{{ face }}" class="charactersForm-face" />
             {% if inputed %}

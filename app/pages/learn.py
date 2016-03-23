@@ -13,10 +13,22 @@ def __panels(id):
             if panel.get('faces') and panel['metadata'].get('characters'):
                 yield panel
 
+def __group_by(books):
+    characters = {}
+    for book in books:
+        characters[book['id']] = {}
+        for panel in __panels(book['id']):
+            for (face, character) in zip(panel['faces'], panel['metadata']['characters']):
+                if character not in characters[book['id']]:
+                    characters[book['id']][character] = { 'faces': [] }
+                characters[book['id']][character]['faces'].append(face.as_posix())
+    return characters
+
 @learn.route("/learn")
 def index():
     books = db.books.all()
-    return render_template('learn/index.html', books=books)
+    characters = __group_by(books)
+    return render_template('learn/index.html', books=books, characters=characters)
 
 @learn.route("/learn/<id>")
 def select(id):
