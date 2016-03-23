@@ -66,7 +66,7 @@ def __train(logger, train_image, train_label, model, batch_size=10, max_steps=20
 
     return sess
 
-reuse = False
+reuse = None
 def train(logger, model_path, num_classes, data):
     global reuse
     # setup training label
