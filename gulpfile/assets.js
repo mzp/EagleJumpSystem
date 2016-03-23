@@ -4,6 +4,7 @@ var fontAwesome = require('node-font-awesome');
 var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
 var stylus = require('gulp-stylus');
+var livereload = require('gulp-livereload');
 
 gulp.task('assets:css', function () {
   gulp.src('./assets/stylesheets/main.styl')
@@ -17,7 +18,8 @@ gulp.task('assets:css', function () {
       ]
     }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./app/static'));
+    .pipe(gulp.dest('./app/static'))
+    .pipe(livereload());
 });
 
 gulp.task('assets:font', function () {
