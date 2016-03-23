@@ -27,6 +27,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-stylus": "^2.3.1",
+    "lodash.get": "^4.1.2",
     "node-font-awesome": "^1.0.2",
     "purecss": "^0.6.0",
     "react": "^0.14.7",
