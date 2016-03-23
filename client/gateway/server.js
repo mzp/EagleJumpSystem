@@ -69,5 +69,9 @@ export default {
           else { resolve(res); }
         });
     })
+  },
+
+  infer: (book_id, vol) => {
+    return get_api(`/characters/${book_id}/${vol}` );
   }
 }
