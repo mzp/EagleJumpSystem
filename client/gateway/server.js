@@ -57,5 +57,17 @@ export default {
           else { resolve(res); }
         });
     });
+  },
+
+  learn: (id, tags) => {
+    return new Promise((resolve, reject) => {
+      request
+        .post(`/learn/${id}/start`)
+        .send({ tags })
+        .end((err, res) => {
+          if(err) { reject(err); }
+          else { resolve(res); }
+        });
+    })
   }
 }

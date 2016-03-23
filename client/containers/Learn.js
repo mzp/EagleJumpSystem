@@ -4,6 +4,7 @@ import bookActions from '../actions/books';
 import characterActions from '../actions/characters';
 import { bindActionCreators } from 'redux';
 import BookSelect from '../components/BookSelect';
+import LogViewer from '../components/LogViewer';
 import ConfirmButton from '../components/ConfirmButton';
 
 const template = require('react-jade').compileFile(__dirname + '/Learn.jade');
@@ -18,6 +19,13 @@ class Learn extends React.Component {
     }
   }
 
+  start() {
+    const { books, characters, characterAction } = this.props;
+    const book = books.find((book) => book.selected);
+    const tags = Object.keys(characters).filter((tag) => characters[tag].selected);
+    characterAction.learn(book.id, tags);
+  }
+
   render() {
     const { books } = this.props;
     const book = books.find((book) => book.selected);
@@ -27,7 +35,8 @@ class Learn extends React.Component {
       book,
       currentTags,
       name: ::this.name,
-      BookSelect, ConfirmButton,
+      start: ::this.start,
+      BookSelect, ConfirmButton, LogViewer,
       ...this.props
     });
   }

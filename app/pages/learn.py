@@ -45,12 +45,9 @@ def select(id):
 def start(id):
     book = db.books.find(id)
     panels = __panels(id)
-    tags = []
-    for character in book['characters']:
-        if request.form.get(character['tag']) == 'on':
-            tags.append(character['tag'])
+    tags = request.json['tags']
     ident = commands.learn.start(id, panels, tags)
-    return redirect(url_for('learn.show', id=ident))
+    return str(ident)
 
 @learn.route("/learn/<id>/log")
 def show(id):
