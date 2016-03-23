@@ -9,19 +9,15 @@ var livereload = require('gulp-livereload');
 
 PAGES = ['books', 'upload', 'text', 'faces'];
 
-PAGES.forEach(function(name) {
-  gulp.task('build:' + name, function() {
-    browserify({ entries: ['client/pages/' + name + '.js'], debug: true})
+gulp.task('build', function() {
+    browserify({ entries: ['client/main.js'], debug: true})
       .transform(babelify, {
         presets: ['stage-0', 'es2015', 'react']
       })
       .transform(react_jade)
       .bundle()
       .pipe(plumber())
-      .pipe( source( name + '.js' ) )
+      .pipe( source( 'main.js' ) )
       .pipe( gulp.dest( './app/static/bundle' ))
       .pipe(livereload());
-  });
 });
-
-gulp.task('build', PAGES.map(function(name) { return 'build:' + name; }));

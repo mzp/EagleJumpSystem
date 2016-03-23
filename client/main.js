@@ -1,0 +1,24 @@
+import React from 'react';
+import { Provider } from 'react-redux';
+import { render } from 'react-dom';
+import configureStore from './store/configureStore';
+import Books from './containers/Books';
+import Faces from './containers/Faces';
+import Text from './containers/Text';
+import Upload from './containers/Upload';
+
+[
+  ['books-root', Books],
+  ['faces-root', Faces],
+  ['text-root', Text],
+  ['upload-root', Upload]
+].forEach(([id, Container]) => {
+  const mountNode = document.getElementById(id);
+  if(mountNode) {
+    const store = configureStore();
+    render(
+        <Provider store={store}><Container /></Provider>,
+        mountNode);
+  }
+});
+
