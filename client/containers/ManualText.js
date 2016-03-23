@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import volumeActions from '../actions/volume';
+import panelActions from '../actions/panels';
 import { bindActionCreators } from 'redux';
 import VolumeSelect from '../components/VolumeSelect';
 
@@ -18,6 +19,9 @@ class ManualText extends React.Component {
 export default connect(
     (state)=> state,
     (dispatch) => {
-      return { volumeAction: bindActionCreators(volumeActions, dispatch) }
+      return {
+        volumeAction: bindActionCreators(volumeActions, dispatch),
+        panelAction: bindActionCreators(panelActions, dispatch)
+      }
     }
   )(ManualText);
