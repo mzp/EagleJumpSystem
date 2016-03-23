@@ -6,12 +6,14 @@ import Books from './containers/Books';
 import Faces from './containers/Faces';
 import Text from './containers/Text';
 import Upload from './containers/Upload';
+import Learn from './containers/Learn';
 
 [
   ['books-root', Books],
   ['faces-root', Faces],
   ['text-root', Text],
-  ['upload-root', Upload]
+  ['upload-root', Upload],
+  ['learn-root', Learn]
 ].forEach(([id, Container]) => {
   const mountNode = document.getElementById(id);
   if(mountNode) {
