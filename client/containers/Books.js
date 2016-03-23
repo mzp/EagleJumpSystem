@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/books';
 import { bindActionCreators } from 'redux';
+import BookSelect from '../components/BookSelect';
 
 const template = require('react-jade').compileFile(__dirname + '/Books.jade');
 
@@ -11,6 +12,7 @@ class Books extends React.Component {
     const book = books.find((book) => book.selected);
     return template({
       book,
+      BookSelect,
       ...this.props
     });
   }

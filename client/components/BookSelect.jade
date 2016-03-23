@@ -1,0 +1,7 @@
+.bookSelect
+  each book in books
+    - var className = book.selected ? 'bookSelect_item bookSelect_item-selected' : 'bookSelect_item';
+    div(className = className, key=book.id, onClick=onClick.bind(this, book.id))
+      .bookSelect_title= book.title
+      .bookSelect_volume vol. 1-
+        = book.volume

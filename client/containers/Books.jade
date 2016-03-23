@@ -2,13 +2,7 @@
   .bookActions
     span.bookActions_add(onClick=addBook)
       i.fa.fa-plus
-  .books
-    each book in books
-      - var className = book.selected ? 'books_item books_item-selected' : 'books_item';
-      div(className = className, key=book.id, onClick=select.bind(this, book.id))
-        .books_title= book.title
-        .books_volume vol. 1-
-          = book.volume
+  BookSelect(books=books, onClick=select)
 #main
   if book
     .pure-form.pure-form-stacked.bookForm
