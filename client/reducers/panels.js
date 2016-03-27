@@ -26,9 +26,18 @@ export default handleActions({
       }
     ));
   },
-  'panels.saveScript': (state, action) => {
+  'panels.next': (state, action) => {
     const current = findIndex(state, (x) => x.selected);
     const next = (current + 1) % state.length;
+    return state.map((panel, i) =>
+      ({
+        ...panel,
+        selected: i == next
+      }));
+  },
+  'panels.prev': (state, action) => {
+    const current = findIndex(state, (x) => x.selected);
+    const next = (current - 1) % state.length;
     return state.map((panel, i) =>
       ({
         ...panel,

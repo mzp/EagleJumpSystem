@@ -21,15 +21,31 @@ class ManualText extends React.Component {
     saveScript(panel);
   }
 
+  next(e) {
+    e.preventDefault();
+    const { panelAction: { next } } = this.props;
+    next();
+  }
+
+  prev(e) {
+    e.preventDefault();
+    const { panelAction: { prev } } = this.props;
+    prev();
+  }
+
   render() {
     const { panels } = this.props;
     const panel = panels.find((panel) => panel.selected);
     const keymap = {
-      'submit': 'shift+enter'
+      'submit': 'ctrl+enter',
+      'next': 'ctrl+s',
+      'prev': 'ctrl+l'
     };
 
     const handlers = {
-      'submit': ::this.submit
+      'submit': ::this.submit,
+      'next': ::this.next,
+      'prev': ::this.prev
     };
 
     const content = template({

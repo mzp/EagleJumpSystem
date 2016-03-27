@@ -13,16 +13,6 @@ def index():
     panel_count = db.panels.count_by_books(books)
     return render_template('manual_text/index.html', books=books, panel_count=panel_count, panels=panels)
 
-@manual_text.route("/manual/text/<id>/<vol>")
-def edit(id, vol):
-    panels = list(db.panels.find(id, vol))
-    if 'path' in request.args:
-        path = request.args['path']
-        panel = utils.find(panels, lambda panel: panel['path'].as_posix() == path)
-    else:
-        panel = utils.find(panels, utils.is_empty('script'))
-    return render_template('manual_text/edit.html', panel=panel, panels=panels, id=id, vol=vol)
-
 @manual_text.route("/manual/text/<id>/<vol>/update", methods=['POST'])
 def update(id, vol):
     panels = list(db.panels.find(id, vol))
