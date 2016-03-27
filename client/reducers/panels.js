@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import { updateSelected } from '../utils';
 import get from 'lodash.get';
 
 const PANELS = window.__panels__  || {};
@@ -13,5 +14,15 @@ export default handleActions({
     return state.map((panel) => {
       return { ...panel, selected: panel.path == path };
     })
+  },
+  'panels.updateScript': (state, action) => {
+    return updateSelected(state, (panel) => (
+      {
+        ...panel,
+        metadata: {
+          ...panel.metadata,
+          script: action.payload }
+      }
+    ));
   }
 }, []);
