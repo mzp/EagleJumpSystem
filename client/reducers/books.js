@@ -1,23 +1,14 @@
 import { handleActions } from 'redux-actions';
-
-function map(books, f) {
-  return books.map((book) => {
-    if(book.selected) {
-      return f(book);
-    } else {
-      return book;
-    }
-  });
-}
+import { updateSelected } from '../utils';
 
 function updateProps(books, props) {
-  return map(books, (book) => {
+  return updateSelected(books, (book) => {
     return { ...book, ...props };
   });
 }
 
 function updateCharacter(books, n, props) {
-  return map(books, (book) => {
+  return updateSelected(books, (book) => {
     return {
       ...book,
       dirty: true,
@@ -66,7 +57,7 @@ export default handleActions({
     return updateProps(state, { volume: action.payload, dirty: true });
   },
   'books.addChraracter': (state) => {
-    return map(state, (book) => {
+    return updateSelected(state, (book) => {
       return {
         ...book,
         dirty: true,
