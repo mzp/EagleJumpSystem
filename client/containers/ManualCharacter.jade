@@ -25,6 +25,11 @@
               = name(auto_characters[index])
       .charactersInput
            each face, index in panel.faces
-            .charactersForm_character(key=face)
+            .charactersInput_character(key=face)
               img(src='/'+face)
       .charactersOtherInput
+      .charactersGuide
+        ul
+          each key in guide()
+            if key[1]
+              li(key=key[0])= key[0] + ': ' + key[1]
