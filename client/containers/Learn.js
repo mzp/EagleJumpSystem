@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import BookSelect from '../components/BookSelect';
 import LogViewer from '../components/LogViewer';
 import ConfirmButton from '../components/ConfirmButton';
+import { nameOfTag } from '../utils';
 
 const template = require('react-jade').compileFile(__dirname + '/Learn.jade');
 
@@ -13,10 +14,7 @@ class Learn extends React.Component {
   name(tag) {
     const { books } = this.props;
     const book = books.find((book) => book.selected);
-    const character = book.characters.find((character) => character.tag == tag);
-    if (character) {
-      return character.name
-    }
+    return nameOfTag(book, tag);
   }
 
   start() {
