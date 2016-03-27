@@ -34,21 +34,30 @@ class ManualCharacter extends React.Component {
     return nameOfTag(book, tag);
   }
 
-  guide() {
-    const { characters } = this.currentBook();
-    return zip(KEYS, characters.map((x) => x.name));
+  switchEditArea() {
+    const { faceAction: { switchEditArea }} = this.props;
+    switchEditArea();
   }
 
   select(index) {
-    const { faceAction: { setTag } } = this.props;
+    const { faces: { editTag }, faceAction: { setTag, setOtherTag } } = this.props;
     const { characters } = this.currentBook();
-    setTag(characters[index].tag)
+
+    if(editTag) {
+      setTag(characters[index].tag);
+    } else {
+      setOtherTag(characters[index].tag);
+    }
   }
 
   render() {
     const panel = this.currentPanel();
-    const keymap = {};
-    let handlers = {};
+    const keymap = {
+      'switch': 'ctrl+o'
+    };
+    let handlers = {
+      'switch': ::this.switchEditArea
+    };
 
     KEYS.forEach((key, i) => {
       keymap[`select-${key}`] = key;
@@ -59,7 +68,7 @@ class ManualCharacter extends React.Component {
       VolumeSelect,
       panel,
       name: ::this.name,
-      guide: ::this.guide,
+      KEYS: KEYS,
       currentCharacters: ::this.currentCharacters,
       selectedClassName,
       ...this.props

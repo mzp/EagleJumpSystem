@@ -24,21 +24,20 @@
             .charactersDetect_face(key=face)
               img(src='/'+face)
               = name(auto_characters[index])
-      .charactersInput
+      div(className = selectedClassName('charactersInput', faces.editTag))
            each face in faces.faces
-            - var className = selectedClassName('charactersInput_character', face.selected)
+            - var className = selectedClassName('charactersInput_character', faces.editTag && face.selected)
             div(className=className, key=face.path, onClick=faceAction.select.bind(this, face))
               .charactersInput_face
                 img(src='/'+face.path)
               .charactersInput_name
                 = name(face.tag)
-      .charactersOtherInput
-        each character in currentCharacters()
+
+      div(className = selectedClassName('charactersOtherInput', !faces.editTag))
+        each character, index in currentCharacters()
           - var className = selectedClassName('charactersOtherInput_character', faces.others.includes(character.tag))
           div(className=className, key=character.tag, onClick=faceAction.setOtherTag.bind(this, character.tag))
-            = name(character.tag)
+            = KEYS[index] + ':' + name(character.tag)
       .charactersGuide
         ul
-          each key in guide()
-            if key[1]
-              li(key=key[0])= key[0] + ': ' + key[1]
+          li Ctrl+o: switch edit area

@@ -28,6 +28,7 @@ export default handleActions({
     return {
       ...state,
       faces: faces,
+      editTag: true,
       others: panel.metadata.others || []
     }
   },
@@ -45,6 +46,10 @@ export default handleActions({
     }));
 
     return { ...state, faces: move(faces, 1) };
+  },
+
+  'faces.switch': (state, action) => {
+    return { ...state, editTag: !state.editTag };
   },
 
   'faces.setOtherTag': (state, action) => {
