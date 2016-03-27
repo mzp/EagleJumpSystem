@@ -15,6 +15,12 @@ export function nameOfTag(book, tag) {
   if (character) {
     return character.name
   }
+  return tag;
+}
+
+export function selectedClassName(name, selected) {
+  return name + ' ' + (selected ? name+'-selected' : '');
+}
 
 export function move(xs, n) {
   const current = findIndex(xs, (x) => x.selected);

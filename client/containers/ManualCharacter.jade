@@ -3,7 +3,7 @@
     VolumeSelect(books=books, onClick=volumeAction.select, current=volume)
   #middle
     each panel in panels
-      - var className = 'charactersThumbnail ' + (panel.selected ? 'charactersThumbnail-selected' : '');
+      - var className = selectedClassName('charactersThumbnail', panel.selected)
       div(className=className, key=panel.path, onClick=panelAction.select.bind(this, panel.path))
         .charactersThumbnail_image
           img(src='/'+panel.detect)
@@ -12,21 +12,26 @@
             img(src='/'+face)
   #main
     if panel
+      - var auto_characters = panel.metadata.auto_characters || [];
+      - var characters = panel.metadata.characters || [];
       .charactersDetect
         .charactersDetect_thumbnail
           img(src='/' + panel.detect)
         .charactersDetect_infer
           div
             i.fa.fa-magic
-          - var auto_characters = panel.metadata.auto_characters || [];
           each face, index in panel.faces
             .charactersDetect_face(key=face)
               img(src='/'+face)
               = name(auto_characters[index])
       .charactersInput
-           each face, index in panel.faces
-            .charactersInput_character(key=face)
-              img(src='/'+face)
+           each face in faces.faces
+            - var className = selectedClassName('charactersInput_character', face.selected)
+            div(className=className, key=face.path, onClick=faceAction.select.bind(this, face))
+              .charactersInput_face
+                img(src='/'+face.path)
+              .charactersInput_name
+                = name(face.tag)
       .charactersOtherInput
       .charactersGuide
         ul
