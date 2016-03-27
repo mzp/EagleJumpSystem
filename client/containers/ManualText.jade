@@ -3,9 +3,22 @@
     VolumeSelect(books=books, onClick=volumeAction.select, current=volume)
   #middle
     each panel in panels
-      - var className = 'scriptThumbnail ' + (panel.selected ? 'scriptThumbnail_selected' : '');
+      - var className = 'scriptThumbnail ' + (panel.selected ? 'scriptThumbnail-selected' : '');
       div(className=className, key=panel.path, onClick=panelAction.select.bind(this, panel.path))
-        img.scriptThumbnail_image(src='/'+panel.path)
+        .scriptThumbnail_image
+          img(src='/'+panel.path)
         span.scriptThumbnail_script
           =panel.metadata.script || panel.metadata.auto_script
   #main
+    if panel
+      .scriptForm
+        .scriptForm_info
+          .scriptForm_thumbnail
+            img(src='/' + panel.path)
+          .scriptForm_autoScript
+            div
+              i.fa.fa-magic
+                =panel.metadata.auto_script
+        .scriptForm_script
+          textarea(onChange=panelAction.updateScript,value=panel.metadata.script || panel.metadata.auto_script, autoFocus=true)
+        ConfirmButton(icon='commenting', onClick=submit)

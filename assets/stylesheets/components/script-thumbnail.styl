@@ -1,16 +1,22 @@
 .scriptThumbnail
   font-size 9px
   white-space nowrap
-  margin-bottom 2px
   overflow hidden
   text-overflow ellipsis
+  border-bottom: 1px solid $separation-color
+  padding 3px 5px 0 5px
+
+  &-selected
+    background-color $select-color
 
   *
     vertical-align middle
 
   &_image
-    width: 32px
+    img
+      max-width 32px
+      max-height 23px
+    width 32px
+    height 25px
     margin-right 5px
-
-  &_selected
-    background-color $select-color
+    display inline-block
