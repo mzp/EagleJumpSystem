@@ -3,15 +3,16 @@ import db.books
 import db.panels
 import db.faces
 import utils
+import custom_json
 
 manual_characters = Blueprint('manual_characters', __name__)
 
 @manual_characters.route("/manual/characters")
 def index():
-    def count(id, vol):
-        return len(list(db.panels.find(id, vol)))
     books = db.books.all()
-    return render_template('manual_characters/index.html', books=books, count=count)
+    panels = custom_json.Encoder().encode(db.panels.group_by(books))
+    panel_count = db.panels.count_by_books(books)
+    return render_template('manual_characters/index.html', books=books, panels=panels, panel_count=panel_count)
 
 @manual_characters.route("/manual/characters/<id>/<vol>")
 def edit(id, vol):

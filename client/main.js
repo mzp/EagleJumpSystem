@@ -9,6 +9,7 @@ import Upload from './containers/Upload';
 import Learn from './containers/Learn';
 import Infer from './containers/Infer';
 import ManualText from './containers/ManualText';
+import ManualCharacter from './containers/ManualCharacter';
 
 [
   ['books-root', Books],
@@ -17,7 +18,8 @@ import ManualText from './containers/ManualText';
   ['upload-root', Upload],
   ['learn-root', Learn],
   ['infer-root', Infer],
-  ['manual-text-root', ManualText]
+  ['manual-text-root', ManualText],
+  ['manual-character-root', ManualCharacter]
 ].forEach(([id, Container]) => {
   const mountNode = document.getElementById(id);
   if(mountNode) {
