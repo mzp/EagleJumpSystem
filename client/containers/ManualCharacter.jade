@@ -14,6 +14,7 @@
     if panel
       - var auto_characters = panel.metadata.auto_characters || [];
       - var characters = panel.metadata.characters || [];
+      - var others = panel.metadata.others || [];
       .charactersDetect
         .charactersDetect_thumbnail
           img(src='/' + panel.detect)
@@ -24,18 +25,18 @@
             .charactersDetect_face(key=face)
               img(src='/'+face)
               = name(auto_characters[index])
-      div(className = selectedClassName('charactersInput', faces.editTag))
-           each face in faces.faces
-            - var className = selectedClassName('charactersInput_character', faces.editTag && face.selected)
-            div(className=className, key=face.path, onClick=faceAction.select.bind(this, face))
+      div(className = selectedClassName('charactersInput', panel.editTag))
+           each face, i in panel.faces
+            - var className = selectedClassName('charactersInput_character', panel.editTag && panel.selectedFace == face)
+            div(className=className, key=face, onClick=panelAction.selectFace.bind(this, face))
               .charactersInput_face
-                img(src='/'+face.path)
+                img(src='/'+face)
               .charactersInput_name
-                = name(face.tag)
-      div(className = selectedClassName('charactersOtherInput', !faces.editTag))
+                = name(characters[i])
+      div(className = selectedClassName('charactersOtherInput', !panel.editTag))
         each character, index in currentCharacters()
-          - var className = selectedClassName('charactersOtherInput_character', faces.others.includes(character.tag))
-          div(className=className, key=character.tag, onClick=faceAction.setOtherTag.bind(this, character.tag))
+          - var className = selectedClassName('charactersOtherInput_character', others.includes(character.tag))
+          div(className=className, key=character.tag, onClick=panelAction.setOtherTag.bind(this, character.tag))
             = KEYS[index] + ':' + name(character.tag)
 
       ConfirmButton(icon='group', onClick=submit)

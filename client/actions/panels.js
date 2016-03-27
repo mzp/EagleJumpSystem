@@ -7,5 +7,9 @@ export default {
   saveScript: createAction('panels.next', server.saveScript),
   saveCharacters: createAction('panels.next', server.saveCharacters),
   next: createAction('panels.next'),
-  prev: createAction('panels.prev')
+  prev: createAction('panels.prev'),
+  selectFace: createAction('panels.selectFace'),
+  setTag: createAction('panels.setTag'),
+  setOtherTag: createAction('panels.setOtherTag'),
+  switchEditArea: createAction('panels.switch')
 }

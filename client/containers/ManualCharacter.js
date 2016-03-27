@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import zip from 'lodash.zip';
 import volumeActions from '../actions/volume';
 import panelActions from '../actions/panels';
-import faceActions from '../actions/faces';
 import VolumeSelect from '../components/VolumeSelect';
 import ConfirmButton from '../components/ConfirmButton';
 import { nameOfTag, selectedClassName } from '../utils';
@@ -43,13 +42,14 @@ class ManualCharacter extends React.Component {
   }
 
   switchEditArea() {
-    const { faceAction: { switchEditArea }} = this.props;
+    const { panelAction: { switchEditArea }} = this.props;
     switchEditArea();
   }
 
   select(index) {
-    const { faces: { editTag }, faceAction: { setTag, setOtherTag } } = this.props;
+    const { panelAction: { setTag, setOtherTag } } = this.props;
     const { characters } = this.currentBook();
+    const { editTag } = this.currentPanel();
 
     if(editTag) {
       setTag(characters[index].tag);
@@ -94,7 +94,6 @@ export default connect(
     (state)=> state,
     (dispatch) => ({
       volumeAction: bindActionCreators(volumeActions, dispatch),
-      panelAction: bindActionCreators(panelActions, dispatch),
-      faceAction: bindActionCreators(faceActions, dispatch)
+      panelAction: bindActionCreators(panelActions, dispatch)
     }),
   )(ManualCharacter);
