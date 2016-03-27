@@ -1,1 +1,12 @@
-h1 Hello
+#col-3
+  #nav
+    VolumeSelect(books=books, onClick=volumeAction.select, current=volume)
+  #middle
+    each panel in panels
+      - var className = 'charactersThumbnail ' + (panel.selected ? 'charactersThumbnail-selected' : '');
+      div(className=className, key=panel.path, onClick=panelAction.select.bind(this, panel.path))
+        .charactersThumbnail_image
+          img(src='/'+panel.detect)
+        each face in panel.faces
+          .charactersThumbnail_image(key=face)
+            img(src='/'+face)

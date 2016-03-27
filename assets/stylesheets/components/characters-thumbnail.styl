@@ -1,12 +1,17 @@
 .charactersThumbnail
-  margin-bottom 2px
+  padding 3px 5px 0 5px
   overflow hidden
+  height 25px
+  border-bottom: 1px solid $separation-color
 
-  &-detect
-    height 32px
+  &_image
+    img
+      max-width 32px
+      max-height 23px
+    display inline-block
+    width 32px
+    height 25px
+    margin-right 2px
 
-  &-face
-    height 32px
-
-  &_selected
-    background-color gray
+  &-selected
+    background-color $select-color
