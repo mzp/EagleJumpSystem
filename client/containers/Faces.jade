@@ -1,8 +1,9 @@
-#nav
-  VolumeSelect(books=books, onClick=select, current=volume)
-#main
-  if log.id
-    LogViewer(value=log.content, polling=fetch.bind(this, log.id), interval=1000)
-  else
-    if volume.book_id
-      ConfirmButton(icon='crop', onClick=run)
+#col-2
+  #nav
+    VolumeSelect(books=books, onClick=select, current=volume)
+  #main
+    if log.id
+      LogViewer(value=log.content, polling=fetch.bind(this, log.id), interval=1000)
+    else
+      if volume.book_id
+        ConfirmButton(icon='crop', onClick=run)

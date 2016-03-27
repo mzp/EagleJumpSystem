@@ -1,30 +1,31 @@
-#nav
-  .bookActions
-    span.bookActions_add(onClick=addBook)
-      i.fa.fa-plus
-  BookSelect(books=books, onClick=select)
-#main
-  if book
-    .pure-form.pure-form-stacked.bookForm
-      label Book ID(unique)
-      input.bookForm_input(placeholder="zoi", value=book.id, onChange=changeID, readOnly=!book.draft)
+#col-2
+  #nav
+    .bookActions
+      span.bookActions_add(onClick=addBook)
+        i.fa.fa-plus
+    BookSelect(books=books, onClick=select)
+  #main
+    if book
+      .pure-form.pure-form-stacked.bookForm
+        label Book ID(unique)
+        input.bookForm_input(placeholder="zoi", value=book.id, onChange=changeID, readOnly=!book.draft)
 
-      label Title
-      input.bookForm_input(placeholder="NEW GAME!", value=book.title, onChange=changeTitle)
+        label Title
+        input.bookForm_input(placeholder="NEW GAME!", value=book.title, onChange=changeTitle)
 
-      label Volume
-      input.bookForm_input(placeholder="3", value=book.volume, type="number", onChange=changeVolume)
+        label Volume
+        input.bookForm_input(placeholder="3", value=book.volume, type="number", onChange=changeVolume)
 
-      label Characters
-      .bookForm_characters
-        each character, index in book.characters
-          .pure-g(key=index)
-            input.pure-u-1-3(type="text", value=character.tag, onChange=changeTag.bind(this,index), placeholder="tag")
-            input.pure-u-1-3(type="text", value=character.name, onChange=changeName.bind(this, index), placeholder="name")
-            input.pure-u-1-3(type="text", value=character.color, onChange=changeColor.bind(this, index), placeholder="rgb(r,g,b)")
-      .characterActions
-        .characterActions_add(onClick=addCharacter)
-          i.fa.fa-plus
+        label Characters
+        .bookForm_characters
+          each character, index in book.characters
+            .pure-g(key=index)
+              input.pure-u-1-3(type="text", value=character.tag, onChange=changeTag.bind(this,index), placeholder="tag")
+              input.pure-u-1-3(type="text", value=character.name, onChange=changeName.bind(this, index), placeholder="name")
+              input.pure-u-1-3(type="text", value=character.color, onChange=changeColor.bind(this, index), placeholder="rgb(r,g,b)")
+        .characterActions
+          .characterActions_add(onClick=addCharacter)
+            i.fa.fa-plus
 
-      button.pure-button.pure-button-primary.bookForm_submit(onClick=save.bind(this, book), disabled=!book.dirty)
-        i.fa.fa-check
+        button.pure-button.pure-button-primary.bookForm_submit(onClick=save.bind(this, book), disabled=!book.dirty)
+          i.fa.fa-check
