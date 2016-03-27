@@ -5,6 +5,20 @@ import findIndex from 'lodash.findindex';
 
 const PANELS = window.__panels__  || {};
 
+function init(panels) {
+  return updateSelected(panels, (panel) => {
+    const { metadata: { characters, auto_characters } }  = panel;
+    const empty = Array.apply(null, Array(panel.faces.length));
+    const next_characters = characters || auto_characters || empty;
+    return {
+      ...panel,
+      metadata: { ...panel.metadata, characters: next_characters },
+      editTag: true,
+      selectedFace: get(panel, ['faces', 0], null)
+    };
+  });
+}
+
 export default handleActions({
   'volume.select': (state, action) => {
     const { book_id, volume }= action.payload;
@@ -12,18 +26,7 @@ export default handleActions({
   },
   'panels.select': (state, action) => {
     const path = action.payload;
-    return state.map((panel) => {
-      if(panel.path == path) {
-        return {
-          ...panel,
-          selected: true,
-          editTag: true,
-          selectedFace: get(panel, ['faces', 0], null)
-        };
-      } else {
-        return { ...panel, selected: false };
-      }
-    })
+    return init(state.map((panel) => ({ ...panel, selected: panel.path == path })));
   },
   'panels.updateScript': (state, action) => {
     return updateSelected(state, (panel) => (
@@ -36,10 +39,10 @@ export default handleActions({
     ));
   },
   'panels.next': (state, action) => {
-    return move(state, 1);
+    return init(move(state, 1));
   },
   'panels.prev': (state, action) => {
-    return move(state, -1);
+    return init(move(state, -1));
   },
   'panels.selectFace': (state, action) => {
     return updateSelected(state, (panel) => {
@@ -76,7 +79,7 @@ export default handleActions({
   },
   'panels.setOtherTag': (state, action) => {
     return updateSelected(state, (panel) => {
-      const others = get(panel, ['metadata', 'others'], []);
+      const others = panel.metadata.others || [];
       let next_others;
       if( others.includes(action.payload) ) {
         next_others = others.filter((x) => x != action.payload);

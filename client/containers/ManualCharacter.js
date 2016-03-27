@@ -17,8 +17,20 @@ class ManualCharacter extends React.Component {
   submit(e) {
     e.preventDefault();
 
-    const { faces, panelAction: { saveCharacters } } = this.props;
-    saveCharacters(this.currentPanel(), faces);
+    const { panelAction: { saveCharacters } } = this.props;
+    saveCharacters(this.currentPanel());
+  }
+
+  next(e) {
+    e.preventDefault();
+    const { panelAction: { next } } = this.props;
+    next();
+  }
+
+  prev(e) {
+    e.preventDefault();
+    const { panelAction: { prev } } = this.props;
+    prev();
   }
 
   currentPanel() {
@@ -62,11 +74,15 @@ class ManualCharacter extends React.Component {
     const panel = this.currentPanel();
     const keymap = {
       'switch': 'ctrl+o',
-      'submit': 'ctrl+enter'
+      'submit': 'ctrl+enter',
+      'next': 'ctrl+s',
+      'prev': 'ctrl+l'
     };
     let handlers = {
       'switch': ::this.switchEditArea,
-      'submit': ::this.submit
+      'submit': ::this.submit,
+      'next': ::this.next,
+      'prev': ::this.prev
     };
 
     KEYS.forEach((key, i) => {

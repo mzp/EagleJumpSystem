@@ -89,13 +89,13 @@ export default {
     });
   },
 
-  saveCharacters: (panel, faces) => {
+  saveCharacters: (panel) => {
     return new Promise((resolve, reject) => {
-      const characters = faces.faces.map((x) => x.tag);
+      const { path, book_id, volume, metadata: { characters, others } } = panel;
 
       request
-        .post(`/manual/characters/${panel.book_id}/${panel.volume}/update`)
-        .send({ path: panel.path, characters, others: faces.others })
+        .post(`/manual/characters/${book_id}/${volume}/update`)
+        .send({ path: path, characters, others: others })
         .end((err, res) => {
           if(err) { reject(err); }
           else { resolve(res); }
