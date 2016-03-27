@@ -9,20 +9,12 @@ import ConfirmButton from '../components/ConfirmButton';
 const template = require('react-jade').compileFile(__dirname + '/ManualText.jade');
 
 class ManualText extends React.Component {
-  change() {
-  }
-
-  submit() {
-  }
-
   render() {
     const { panels } = this.props;
     const panel = panels.find((panel) => panel.selected);
     return template({
       ConfirmButton,
       VolumeSelect,
-      change: ::this.change,
-      submit: ::this.submit,
       panel,
       ...this.props
     });

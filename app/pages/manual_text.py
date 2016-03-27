@@ -26,11 +26,9 @@ def edit(id, vol):
 @manual_text.route("/manual/text/<id>/<vol>/update", methods=['POST'])
 def update(id, vol):
     panels = list(db.panels.find(id, vol))
-    path = request.form['path']
-    script = request.form['script']
+    path = request.json['path']
+    script = request.json['script']
 
     db.metadata.update(path, script=script)
 
-    # show next page
-    next_panel= utils.next(panels, lambda p: p['path'].as_posix() == path)
-    return redirect(url_for('manual_text.edit', id=id, vol=vol, path=next_panel['path']))
+    return 'ok'

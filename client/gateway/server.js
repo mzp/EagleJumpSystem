@@ -73,5 +73,19 @@ export default {
 
   infer: (book_id, vol) => {
     return get_api(`/characters/${book_id}/${vol}` );
+  },
+
+  saveScript: (panel) => {
+    return new Promise((resolve, reject) => {
+      const script = panel.metadata.script || panel.metadata.auto_script || '';
+
+      request
+        .post(`/manual/text/${panel.book_id}/${panel.volume}/update`)
+        .send({ path: panel.path, script })
+        .end((err, res) => {
+          if(err) { reject(err); }
+          else { resolve(res); }
+        });
+    });
   }
 }

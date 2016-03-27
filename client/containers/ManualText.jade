@@ -20,5 +20,8 @@
               i.fa.fa-magic
                 =panel.metadata.auto_script
         .scriptForm_script
-          textarea(onChange=panelAction.updateScript,value=panel.metadata.script || panel.metadata.auto_script, autoFocus=true)
-        ConfirmButton(icon='commenting', onClick=submit)
+          textarea(
+            onChange=panelAction.updateScript,
+            value=panel.metadata.script || panel.metadata.auto_script || '',
+            autoFocus=true)
+        ConfirmButton(icon='commenting', onClick=panelAction.saveScript.bind(this, panel))
