@@ -25,6 +25,10 @@ class ManualCharacter extends React.Component {
     return books.find((book) => book.id == book_id);
   }
 
+  currentCharacters() {
+    return this.currentBook().characters;
+  }
+
   name(tag) {
     const book = this.currentBook();
     return nameOfTag(book, tag);
@@ -56,6 +60,7 @@ class ManualCharacter extends React.Component {
       panel,
       name: ::this.name,
       guide: ::this.guide,
+      currentCharacters: ::this.currentCharacters,
       selectedClassName,
       ...this.props
     });

@@ -28,7 +28,7 @@ export default handleActions({
     return {
       ...state,
       faces: faces,
-      others: panel.metadata.others
+      others: panel.metadata.others || []
     }
   },
 
@@ -45,5 +45,15 @@ export default handleActions({
     }));
 
     return { ...state, faces: move(faces, 1) };
+  },
+
+  'faces.setOtherTag': (state, action) => {
+    const { others } = state;
+    if( others.includes(action.payload) ) {
+      const xs = others.filter((x) => x != action.payload);
+      return { ...state, others: xs };
+    } else {
+      return { ...state, others: [...others, action.payload] };
+    }
   }
 }, {});

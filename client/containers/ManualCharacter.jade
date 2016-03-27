@@ -33,6 +33,10 @@
               .charactersInput_name
                 = name(face.tag)
       .charactersOtherInput
+        each character in currentCharacters()
+          - var className = selectedClassName('charactersOtherInput_character', faces.others.includes(character.tag))
+          div(className=className, key=character.tag, onClick=faceAction.setOtherTag.bind(this, character.tag))
+            = name(character.tag)
       .charactersGuide
         ul
           each key in guide()
