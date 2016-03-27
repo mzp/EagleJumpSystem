@@ -1,3 +1,5 @@
+import findIndex from 'lodash.findindex';
+
 export function updateSelected(xs, f) {
   return xs.map((x) => {
     if(x.selected) {
@@ -13,4 +15,9 @@ export function nameOfTag(book, tag) {
   if (character) {
     return character.name
   }
+
+export function move(xs, n) {
+  const current = findIndex(xs, (x) => x.selected);
+  const next = (current + n) % xs.length;
+  return xs.map((x, i) => ({ ...x, selected: i == next }));
 }

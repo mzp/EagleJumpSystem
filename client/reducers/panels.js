@@ -1,7 +1,6 @@
 import { handleActions } from 'redux-actions';
-import { updateSelected } from '../utils';
+import { updateSelected, move } from '../utils';
 import get from 'lodash.get';
-import findIndex from 'lodash.findindex';
 
 const PANELS = window.__panels__  || {};
 
@@ -27,21 +26,9 @@ export default handleActions({
     ));
   },
   'panels.next': (state, action) => {
-    const current = findIndex(state, (x) => x.selected);
-    const next = (current + 1) % state.length;
-    return state.map((panel, i) =>
-      ({
-        ...panel,
-        selected: i == next
-      }));
+    return move(state, 1);
   },
   'panels.prev': (state, action) => {
-    const current = findIndex(state, (x) => x.selected);
-    const next = (current - 1) % state.length;
-    return state.map((panel, i) =>
-      ({
-        ...panel,
-        selected: i == next
-      }));
+    return move(state, -1);
   }
 }, []);
