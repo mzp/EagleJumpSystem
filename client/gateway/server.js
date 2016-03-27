@@ -87,5 +87,19 @@ export default {
           else { resolve(res); }
         });
     });
+  },
+
+  saveCharacters: (panel, faces) => {
+    return new Promise((resolve, reject) => {
+      const characters = faces.faces.map((x) => x.tag);
+
+      request
+        .post(`/manual/characters/${panel.book_id}/${panel.volume}/update`)
+        .send({ path: panel.path, characters, others: faces.others })
+        .end((err, res) => {
+          if(err) { reject(err); }
+          else { resolve(res); }
+        });
+    });
   }
 }

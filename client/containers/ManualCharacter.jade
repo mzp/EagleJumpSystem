@@ -32,12 +32,14 @@
                 img(src='/'+face.path)
               .charactersInput_name
                 = name(face.tag)
-
       div(className = selectedClassName('charactersOtherInput', !faces.editTag))
         each character, index in currentCharacters()
           - var className = selectedClassName('charactersOtherInput_character', faces.others.includes(character.tag))
           div(className=className, key=character.tag, onClick=faceAction.setOtherTag.bind(this, character.tag))
             = KEYS[index] + ':' + name(character.tag)
+
+      ConfirmButton(icon='group', onClick=submit)
       .charactersGuide
         ul
           li Ctrl+o: switch edit area
+          li Ctrl+Enter: submit

@@ -39,18 +39,9 @@ def edit(id, vol):
 @manual_characters.route("/manual/characters/<id>/<vol>/update", methods=['POST'])
 def update(id, vol):
     panels = list(db.panels.find(id, vol))
-    path = request.form['path']
+    path = request.json['path']
 
-    characters = [
-        request.form['character[%d]' % i]
-        for i in range(10) if ('character[%d]' % i) in request.form
-    ]
-    others = [
-        request.form['other[%d]' % i]
-        for i in range(5) if request.form['other[%d]' % i]
-    ]
+    characters = request.json['characters']
+    others = request.json['others']
     db.metadata.update(path, characters=characters, others=others)
-
-    # show next page
-    next_panel= utils.next(panels, lambda p: p['path'].as_posix() == path)
-    return redirect(url_for('manual_characters.edit', id=id, vol=vol, path=next_panel['path']))
+    return 'ok'

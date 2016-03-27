@@ -7,6 +7,7 @@ import volumeActions from '../actions/volume';
 import panelActions from '../actions/panels';
 import faceActions from '../actions/faces';
 import VolumeSelect from '../components/VolumeSelect';
+import ConfirmButton from '../components/ConfirmButton';
 import { nameOfTag, selectedClassName } from '../utils';
 
 const template = require('react-jade').compileFile(__dirname + '/ManualCharacter.jade');
@@ -14,6 +15,13 @@ const template = require('react-jade').compileFile(__dirname + '/ManualCharacter
 const KEYS = ['a', 'o', 'e', 'i', 'u', 'i', 'd', 'h', 't', 'n', 's', '-'];
 
 class ManualCharacter extends React.Component {
+  submit(e) {
+    e.preventDefault();
+
+    const { faces, panelAction: { saveCharacters } } = this.props;
+    saveCharacters(this.currentPanel(), faces);
+  }
+
   currentPanel() {
     const { panels } = this.props;
     return panels.find((panel) => panel.selected);
@@ -53,10 +61,12 @@ class ManualCharacter extends React.Component {
   render() {
     const panel = this.currentPanel();
     const keymap = {
-      'switch': 'ctrl+o'
+      'switch': 'ctrl+o',
+      'submit': 'ctrl+enter'
     };
     let handlers = {
-      'switch': ::this.switchEditArea
+      'switch': ::this.switchEditArea,
+      'submit': ::this.submit
     };
 
     KEYS.forEach((key, i) => {
@@ -66,7 +76,9 @@ class ManualCharacter extends React.Component {
 
     const content = template({
       VolumeSelect,
+      ConfirmButton,
       panel,
+      submit: ::this.submit,
       name: ::this.name,
       KEYS: KEYS,
       currentCharacters: ::this.currentCharacters,
