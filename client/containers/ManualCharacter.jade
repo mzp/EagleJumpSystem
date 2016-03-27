@@ -10,3 +10,21 @@
         each face in panel.faces
           .charactersThumbnail_image(key=face)
             img(src='/'+face)
+  #main
+    if panel
+      .charactersDetect
+        .charactersDetect_thumbnail
+          img(src='/' + panel.detect)
+        .charactersDetect_infer
+          div
+            i.fa.fa-magic
+          - var auto_characters = panel.metadata.auto_characters || [];
+          each face, index in panel.faces
+            .charactersDetect_face(key=face)
+              img(src='/'+face)
+              = name(auto_characters[index])
+      .charactersInput
+           each face, index in panel.faces
+            .charactersForm_character(key=face)
+              img(src='/'+face)
+      .charactersOtherInput
