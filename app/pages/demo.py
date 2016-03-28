@@ -13,7 +13,8 @@ temp = Path('./tmp').resolve()
 @demo.route("/demo")
 def index():
     books = db.books.all()
-    return render_template('demo/index.html', books=books)
+    panel_count = db.panels.count_by_books(books)
+    return render_template('demo/index.html', books=books, panel_count=panel_count)
 
 def save(storage):
     (_, path) = tempfile.mkstemp(prefix='ejs')

@@ -1,15 +1,10 @@
 {% extends "base.html" %}
 {% set active_page = 'demo' -%}
 {% block content %}
-<form class="pure-form pure-form-stacked" action={{url_for('demo.detect')}} method="POST" enctype="multipart/form-data">
-  <select name="book">
-    {% for book in books %}
-      <option value="{{book.id}}">{{book.title}}</option>
-    {% endfor %}
-  </select>
-  <input id="image" name="image" type="file" accept="image/*" />
-  <button type="submit" class="pure-button pure-button-primary">
-    <i class="fa fa-terminal"></i>
-  </button>
-</form>
+<script type="text/javascript">
+window.__books__ = {{books|tojson|safe}};
+window.__panel_count_ = {{panel_count|tojson|safe}};
+</script>
+<div id="demo-root"></div>
+<script src="/static/bundle/main.js" type="text/javascript"></script>
 {% endblock %}

@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { render } from 'react-dom';
 import configureStore from './store/configureStore';
 import Books from './containers/Books';
+import Demo from './containers/Demo';
 import Faces from './containers/Faces';
 import Text from './containers/Text';
 import Upload from './containers/Upload';
@@ -13,6 +14,7 @@ import ManualCharacter from './containers/ManualCharacter';
 
 [
   ['books-root', Books],
+  ['demo-root', Demo],
   ['faces-root', Faces],
   ['text-root', Text],
   ['upload-root', Upload],
