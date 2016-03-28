@@ -6,6 +6,7 @@ import images.learn
 import cv2
 from pathlib import Path
 import os.path
+import json
 
 demo = Blueprint('demo', __name__)
 temp = Path('./tmp').resolve()
@@ -57,5 +58,8 @@ def detect():
     detect_path = mktemp()
     cv2.imwrite(detect_path, image)
 
-    return render_template('demo/detect.html', faces=faces, detect_path=os.path.basename(detect_path))
+    return json.dumps({
+        'faces': faces,
+        'detect_path': os.path.basename(detect_path)
+        })
 

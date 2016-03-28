@@ -101,5 +101,22 @@ export default {
           else { resolve(res); }
         });
     });
+  },
+
+  demo: (book_id, image) => {
+    let formData = new FormData();
+    formData.append('book', book_id);
+    formData.append('image', image);
+
+    return new Promise((resolve, reject) => {
+      request
+        .post('/detect')
+        .send(formData)
+        .end((err, res) => {
+          if(err) { reject(err); }
+          else { resolve(res); }
+        });
+    });
+
   }
 }
