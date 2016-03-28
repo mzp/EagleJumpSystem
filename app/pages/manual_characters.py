@@ -14,28 +14,6 @@ def index():
     panel_count = db.panels.count_by_books(books)
     return render_template('manual_characters/index.html', books=books, panels=panels, panel_count=panel_count)
 
-@manual_characters.route("/manual/characters/<id>/<vol>")
-def edit(id, vol):
-    book = db.books.find(id)
-    panels = list(db.panels.find(id, vol))
-    if 'path' in request.args:
-        path = request.args['path']
-        panel = utils.find(panels, lambda panel: panel['path'].as_posix() == path)
-    else:
-        panel = utils.find(panels, utils.is_empty('script'))
-
-    character_names = {}
-    for character in book['characters']:
-        character_names[character['tag']] = character['name']
-
-    return render_template('manual_characters/edit.html',
-            panel=panel,
-            panels=panels,
-            id=id,
-            vol=vol,
-            book=book,
-            character_names=character_names)
-
 @manual_characters.route("/manual/characters/<id>/<vol>/update", methods=['POST'])
 def update(id, vol):
     panels = list(db.panels.find(id, vol))
