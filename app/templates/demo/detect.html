@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% set active_page = 'demo' -%}
-{% block content %}
-<p><img src="/tmp/{{detect_path}}" /></p>
-{% for (path, name) in faces %}
-<p><img src="/tmp/{{path}}" /></p>
-<p>{{name}}</p>
-{% endfor %}
-{% endblock %}
