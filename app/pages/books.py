@@ -8,6 +8,11 @@ def index():
     books = db.books.all()
     return render_template('books/index.html', books=books)
 
+@books.route("/books/<id>")
+def show(id):
+    books = db.books.all()
+    return render_template('books/index.html', books=books)
+
 @books.route("/books/save", methods=['POST'])
 def save():
     db.books.create_or_update(

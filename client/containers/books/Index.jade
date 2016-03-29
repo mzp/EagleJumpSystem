@@ -1,0 +1,8 @@
+#col-2
+  #nav
+    .bookActions
+      span.bookActions_add(onClick=addBook)
+        i.fa.fa-plus
+    BookSelect(books=books, path='/books')
+  #main
+    =children
