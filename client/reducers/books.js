@@ -27,6 +27,10 @@ function randomId() {
   return Math.floor(10000000*Math.random()).toString(16)
 }
 
+export function currentBooks(books) {
+  return books.find((book) => book.selected);
+}
+
 export default handleActions({
   'books.select': (state, action) => {
     const id = action.payload;

@@ -17,6 +17,12 @@ def index():
     panel_count = db.panels.count_by_books(books)
     return render_template('demo/index.html', books=books, panel_count=panel_count)
 
+@demo.route("/demo/<id>")
+def show(id):
+    books = db.books.all()
+    panel_count = db.panels.count_by_books(books)
+    return render_template('demo/index.html', books=books, panel_count=panel_count)
+
 def save(storage):
     (_, path) = tempfile.mkstemp(prefix='ejs')
     storage.save(path)

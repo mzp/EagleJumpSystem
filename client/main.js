@@ -6,7 +6,9 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from './store/configureStore';
 import BookIndex from 'containers/books/Index';
 import BookForm from 'containers/books/Form';
-import Demo from './containers/Demo';
+import DemoIndex from './containers/demo/index';
+import DemoForm from './containers/demo/form';
+import DemoResult from './containers/demo/result';
 import Faces from './containers/Faces';
 import Infer from './containers/Infer';
 import Learn from './containers/Learn';
@@ -25,7 +27,10 @@ if(root) {
           <Route path="/books" component={BookIndex}>
             <Route path="/books/:id" component={BookForm} />
           </Route>
-          <Route path="/demo" component={Demo} />
+          <Route path="/demo" component={DemoIndex}>
+            <Route path="/demo/result" component={DemoResult} />
+            <Route path="/demo/:id" component={DemoForm} />
+          </Route>
           <Route path="/faces" component={Faces} />
           <Route path="/infer" component={Infer} />
           <Route path="/learn" component={Learn} />
