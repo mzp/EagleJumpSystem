@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import connect from 'containers/supports/connect';
 import BookSelect from 'components/BookSelect';
 
 const template = require('react-jade').compileFile(__dirname + '/Index.jade');
@@ -14,4 +14,4 @@ class Index extends React.Component {
   }
 }
 
-export default connect((state)=> state)(Index);
+export default connect({})(Index);

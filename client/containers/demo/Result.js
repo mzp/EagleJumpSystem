@@ -1,6 +1,5 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import connect from 'containers/supports/connect';
 const template = require('react-jade').compileFile(__dirname + '/Result.jade');
 
 class Result extends React.Component {
@@ -11,4 +10,4 @@ class Result extends React.Component {
   }
 }
 
-export default connect((state)=> state)(Result);
+export default connect({})(Result);

@@ -1,9 +1,8 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router'
-import { connect } from 'react-redux';
-import bookActions from 'actions/books';
-import demoActions from 'actions/demo';
+import bookAction from 'actions/books';
+import demoAction from 'actions/demo';
+import connect from 'containers/supports/connect';
 import { currentBook } from 'reducers/books';
 
 const template = require('react-jade').compileFile(__dirname + '/Form.jade');
@@ -26,7 +25,6 @@ class Form extends React.Component {
   }
 
   render() {
-    console.log('render');
     const book = currentBook(this.props.books);
     if(!book) { return <div />; }
     return template({
@@ -37,7 +35,6 @@ class Form extends React.Component {
   }
 
   sync() {
-    console.log('sync');
     const { books, bookAction: { select }, params: { id } } = this.props;
     const book = currentBook(books);
 
@@ -47,12 +44,4 @@ class Form extends React.Component {
   }
 }
 
-export default connect(
-    (state) => state,
-    (dispatch) => {
-      return {
-        bookAction: bindActionCreators(bookActions, dispatch),
-        demoAction: bindActionCreators(demoActions, dispatch)
-      }
-    }
-  )(Form);
+export default connect({ bookAction, demoAction })(Form);

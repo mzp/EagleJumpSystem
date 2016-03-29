@@ -1,23 +1,23 @@
 .pure-form.pure-form-stacked.bookForm
   label Book ID(unique)
-  input.bookForm_input(placeholder="zoi", value=book.id, onChange=changeID, readOnly=!book.draft)
+  input.bookForm_input(placeholder="zoi", value=book.id, onChange=bookAction.changeID, readOnly=!book.draft)
 
   label Title
-  input.bookForm_input(placeholder="NEW GAME!", value=book.title, onChange=changeTitle)
+  input.bookForm_input(placeholder="NEW GAME!", value=book.title, onChange=bookAction.changeTitle)
 
   label Volume
-  input.bookForm_input(placeholder="3", value=book.volume, type="number", onChange=changeVolume)
+  input.bookForm_input(placeholder="3", value=book.volume, type="number", onChange=bookAction.changeVolume)
 
   label Characters
   .bookForm_characters
     each character, index in book.characters
       .pure-g(key=index)
-        input.pure-u-1-3(type="text", value=character.tag, onChange=changeTag.bind(this,index), placeholder="tag")
-        input.pure-u-1-3(type="text", value=character.name, onChange=changeName.bind(this, index), placeholder="name")
-        input.pure-u-1-3(type="text", value=character.color, onChange=changeColor.bind(this, index), placeholder="rgb(r,g,b)")
+        input.pure-u-1-3(type="text", value=character.tag, onChange=bookAction.changeTag.bind(this,index), placeholder="tag")
+        input.pure-u-1-3(type="text", value=character.name, onChange=bookAction.changeName.bind(this, index), placeholder="name")
+        input.pure-u-1-3(type="text", value=character.color, onChange=bookAction.changeColor.bind(this, index), placeholder="rgb(r,g,b)")
   .characterActions
-    .characterActions_add(onClick=addCharacter)
+    .characterActions_add(onClick=bookAction.addCharacter)
       i.fa.fa-plus
 
-  button.pure-button.pure-button-primary.bookForm_submit(onClick=save.bind(this, book), disabled=!book.dirty)
+  button.pure-button.pure-button-primary.bookForm_submit(onClick=bookAction.save.bind(this, book), disabled=!book.dirty)
     i.fa.fa-check
