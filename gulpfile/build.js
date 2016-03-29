@@ -10,8 +10,11 @@ var livereload = require('gulp-livereload');
 PAGES = ['books', 'upload', 'text', 'faces'];
 
 gulp.task('build', function() {
-    browserify({ entries: ['client/main.js'], debug: true})
-      .transform(babelify, {
+    browserify({
+      entries: ['client/main.js'],
+      debug: true,
+      paths: [ './client' ]
+    }).transform(babelify, {
         presets: ['stage-0', 'es2015', 'react']
       })
       .transform(react_jade)
