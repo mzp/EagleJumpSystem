@@ -27,7 +27,7 @@ function randomId() {
   return Math.floor(10000000*Math.random()).toString(16)
 }
 
-export function currentBooks(books) {
+export function currentBook(books) {
   return books.find((book) => book.selected);
 }
 

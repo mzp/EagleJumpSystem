@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router'
 import { connect } from 'react-redux';
 import bookActions from 'actions/books';
 import demoActions from 'actions/demo';
+import { currentBook } from 'reducers/books';
 
 const template = require('react-jade').compileFile(__dirname + '/Form.jade');
 
@@ -18,14 +19,15 @@ class Form extends React.Component {
 
   selectFile(e) {
     const { books, demoAction: { run } } = this.props;
-    const book = books.find((book) => book.selected);
+    const book = currentBook(books);
     run(book.id, e.target.files[0], () => {
       browserHistory.push('/demo/result');
     });
   }
 
   render() {
-    const book = this.currentBook();
+    console.log('render');
+    const book = currentBook(this.props.books);
     if(!book) { return <div />; }
     return template({
       book,
@@ -34,14 +36,10 @@ class Form extends React.Component {
     });
   }
 
-  currentBook() {
-    const { books } = this.props;
-    return books.find((book) => book.selected);
-  }
-
   sync() {
-    const { bookAction: { select }, params: { id } } = this.props;
-    const book = this.currentBook();
+    console.log('sync');
+    const { books, bookAction: { select }, params: { id } } = this.props;
+    const book = currentBook(books);
 
     if (!book || book.id != id) {
       select(id);
@@ -50,7 +48,7 @@ class Form extends React.Component {
 }
 
 export default connect(
-    (state)=> state,
+    (state) => state,
     (dispatch) => {
       return {
         bookAction: bindActionCreators(bookActions, dispatch),
