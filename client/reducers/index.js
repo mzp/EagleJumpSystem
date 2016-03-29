@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux'
 import books from './books';
 import demo from './demo';
 import volume from './volume';
@@ -7,5 +8,5 @@ import panels from './panels';
 import log from './log';
 
 export default combineReducers({
-  books, characters, volume, panels, log, demo
+  books, characters, volume, panels, log, demo, routing: routerReducer
 });
