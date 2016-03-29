@@ -4,7 +4,7 @@ import { Router, Route, browserHistory } from 'react-router'
 import { render } from 'react-dom';
 import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from './store/configureStore';
-import Books from './containers/Books';
+import BookIndex from './containers/books/index';
 import Demo from './containers/Demo';
 import Faces from './containers/Faces';
 import Infer from './containers/Infer';
@@ -21,7 +21,8 @@ if(root) {
   render(
       <Provider store={store}>
         <Router history={history}>
-          <Route path="/books" component={Books} />
+          <Route path="/books" component={BookIndex}>
+          </Route>
           <Route path="/demo" component={Demo} />
           <Route path="/faces" component={Faces} />
           <Route path="/infer" component={Infer} />
