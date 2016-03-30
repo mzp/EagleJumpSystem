@@ -3,5 +3,3 @@
     VolumeSelect(books=books, onClick=volumeAction.select, current=volume)
   #main
     =children
-    if log.id
-      LogViewer(value=log.content, polling=volumeAction.fetch.bind(this, log.id), interval=1000)

@@ -6,6 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from './store/configureStore';
 import BookIndex from 'containers/books/Index';
 import BookForm from 'containers/books/Form';
+import Batch from 'containers/Batch';
 import DemoIndex from './containers/demo/index';
 import DemoForm from './containers/demo/form';
 import DemoResult from './containers/demo/result';
@@ -41,6 +42,7 @@ if(root) {
           <Route path="/upload" component={UploadIndex}>
             <Route path="/upload/:book_id/:volume" component={UploadForm} />
           </Route>
+          <Route path="/batch/:id" component={Batch} />
         </Router>
       </Provider>,
       root);

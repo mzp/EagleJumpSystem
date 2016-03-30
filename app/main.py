@@ -1,4 +1,5 @@
 from flask import Flask, url_for, redirect, send_from_directory
+from pages.batch import batch
 from pages.books import books
 from pages.characters import characters
 from pages.demo import demo
@@ -14,6 +15,7 @@ import commands
 
 app = Flask(__name__)
 app.config.update(DEBUG=True)
+app.register_blueprint(batch)
 app.register_blueprint(books)
 app.register_blueprint(characters)
 app.register_blueprint(demo)

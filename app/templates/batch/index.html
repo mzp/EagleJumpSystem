@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% set active_page = 'auto' -%}
+{% block content %}
+<script type="text/javascript">
+window.__books__ = {{books|tojson|safe}};
+window.__panel_count_ = {{panel_count|tojson|safe}};
+</script>
+<div id="root"></div>
+<script src="/static/bundle/main.js" type="text/javascript"></script>
+{% endblock %}
