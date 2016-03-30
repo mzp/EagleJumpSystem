@@ -7,7 +7,9 @@ export default function bookSync(prefix, Inner) {
   class Component extends React.Component {
     componentWillMount() {
       const { dispatch, params: { id } } = this.props;
-      dispatch(bookAction.select(id));
+      if(id) {
+        dispatch(bookAction.select(id));
+      }
     }
 
     componentDidUpdate() {

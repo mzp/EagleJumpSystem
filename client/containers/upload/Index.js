@@ -1,21 +1,15 @@
 import React from 'react';
 import volumeAction from 'actions/volume';
-import serverAction from 'actions/server';
 import connect from 'containers/supports/connect';
+import volumeSync from 'containers/supports/volumeSync';
 import LogViewer from 'components/LogViewer';
 import VolumeSelect from 'components/VolumeSelect';
 
 const template = require('react-jade').compileFile(__dirname + '/Index.jade');
 
-class Upload extends React.Component {
-  selectFiles(e) {
-    const { volume, serverAction: { upload }} = this.props;
-    upload(volume.book_id, volume.volume, e.target.files);
-  }
-
-  render() {
+class Index extends React.Component {
+ render() {
     return template({
-      selectFiles: ::this.selectFiles,
       LogViewer,
       VolumeSelect,
       ...this.props
@@ -23,4 +17,4 @@ class Upload extends React.Component {
   }
 }
 
-export default connect({ volumeAction, serverAction })(Upload);
+export default connect({ volumeAction })(volumeSync('upload', Index));

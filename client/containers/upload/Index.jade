@@ -2,7 +2,6 @@
   #nav
     VolumeSelect(books=books, onClick=volumeAction.select, current=volume)
   #main
+    =children
     if log.id
       LogViewer(value=log.content, polling=volumeAction.fetch.bind(this, log.id), interval=1000)
-    else if volume.book_id
-      input(type='file', multiple=true, accept='image/*', onChange=upload)

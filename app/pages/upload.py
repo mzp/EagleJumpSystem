@@ -12,6 +12,10 @@ def index():
     panel_count = db.panels.count_by_books(books)
     return render_template('upload/index.html', books=books, panel_count=panel_count)
 
+@upload.route("/upload/<book_id>/<volume>")
+def demo(book_id, volume):
+    return index()
+
 @upload.route("/upload/<id>/create", methods=['POST'])
 def create(id):
     volume = request.form['volume']
