@@ -9,13 +9,13 @@ import BookForm from 'containers/books/Form';
 import DemoIndex from './containers/demo/index';
 import DemoForm from './containers/demo/form';
 import DemoResult from './containers/demo/result';
+import UploadIndex from 'containers/upload/Index';
 import Faces from './containers/Faces';
 import Infer from './containers/Infer';
 import Learn from './containers/Learn';
 import ManualCharacter from './containers/ManualCharacter';
 import ManualText from './containers/ManualText';
 import Text from './containers/Text';
-import Upload from './containers/Upload';
 
 const root = document.getElementById('root');
 if(root) {
@@ -37,7 +37,7 @@ if(root) {
           <Route path="/manual_character" component={ManualCharacter} />
           <Route path="/manual_text" component={ManualText} />
           <Route path="/text" component={Text} />
-          <Route path="/upload" component={Upload} />
+          <Route path="/upload" component={UploadIndex} />
         </Router>
       </Provider>,
       root);
