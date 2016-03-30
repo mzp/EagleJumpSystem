@@ -1,4 +1,7 @@
 import React from 'react';
+import { browserHistory } from 'react-router'
+import bookAction from 'actions/books';
+import bookSync from 'containers/supports/bookSync';
 import connect from 'containers/supports/connect';
 import BookSelect from 'components/BookSelect';
 
@@ -14,4 +17,4 @@ class Index extends React.Component {
   }
 }
 
-export default connect({})(Index);
+export default connect({ bookAction })(bookSync('demo', Index));

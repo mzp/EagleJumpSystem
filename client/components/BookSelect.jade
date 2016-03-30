@@ -1,6 +1,6 @@
 .bookSelect
   each book in books
-    div(key=book.id, className=selectedClassName('bookSelect_item', book.selected), onClick=onClick.bind(this, book.id))
+    div(key=book.id, className=selectedClassName('bookSelect_item', book.selected), onClick=select.bind(this, book.id))
       .bookSelect_title= book.title
       .bookSelect_volume vol. 1-
         = book.volume

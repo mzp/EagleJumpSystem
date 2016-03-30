@@ -3,6 +3,6 @@
     .bookActions
       span.bookActions_add(onClick=bookAction.addBook)
         i.fa.fa-plus
-    BookSelect(books=books, path='/books')
+    BookSelect(books=books, select=bookAction.select)
   #main
     =children

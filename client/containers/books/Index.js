@@ -1,6 +1,7 @@
 import React from 'react';
 import bookAction from 'actions/books';
 import BookSelect from 'components/BookSelect';
+import bookSync from 'containers/supports/bookSync';
 import connect from 'containers/supports/connect';
 import { currentBook } from 'reducers/books';
 
@@ -18,4 +19,4 @@ class Index extends React.Component {
   }
 }
 
-export default connect({ bookAction })(Index);
+export default connect({ bookAction })(bookSync('books', Index));
