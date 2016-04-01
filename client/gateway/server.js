@@ -46,7 +46,7 @@ export default {
   },
 
   faceDetect: (book_id, vol) => {
-    return get_api(`/faces/${book_id}/${vol}` );
+    return get_api(`/faces/${book_id}/${vol}/start` );
   },
 
   fetch: (id) => {
