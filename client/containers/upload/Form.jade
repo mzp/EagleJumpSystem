@@ -1,0 +1,4 @@
+input(type='file', multiple=true, accept='image/*', onChange=selectFiles)
+
+if log.id
+  LogViewer(value=log.content, polling=serverAction.fetch.bind(this, log.id), interval=1000)
