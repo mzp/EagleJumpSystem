@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import actions from '../actions/volume';
+import actions from 'actions/volume';
 import { bindActionCreators } from 'redux';
-import LogViewer from '../components/LogViewer';
-import VolumeSelect from '../components/VolumeSelect';
-import ConfirmButton from '../components/ConfirmButton';
+import LogViewer from 'components/LogViewer';
+import VolumeSelect from 'components/VolumeSelect';
+import ConfirmButton from 'components/ConfirmButton';
 
-const template = require('react-jade').compileFile(__dirname + '/Text.jade');
+const template = require('react-jade').compileFile(__dirname + '/Index.jade');
 
 class Text extends React.Component {
   run() {
