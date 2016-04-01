@@ -1,3 +1,3 @@
-ConfirmButton(icon='commenting', onClick=run)
+ConfirmButton(icon=icon, onClick=run)
 if log.id
   LogViewer(value=log.content, polling=serverAction.fetch.bind(this, log.id), interval=1000)
