@@ -6,8 +6,8 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from './store/configureStore';
 import BookIndex from 'containers/books/Index';
 import BookForm from 'containers/books/Form';
-import DemoIndex from 'containers/demo/index';
-import DemoForm from 'containers/demo/form';
+import DemoIndex from 'containers/demo/Index';
+import DemoForm from 'containers/demo/Form';
 import DemoResult from './containers/demo/result';
 import UploadIndex from 'containers/upload/Index';
 import UploadForm from 'containers/upload/Form';
