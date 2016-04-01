@@ -8,15 +8,16 @@ import BookIndex from 'containers/books/Index';
 import BookForm from 'containers/books/Form';
 import DemoIndex from 'containers/demo/Index';
 import DemoForm from 'containers/demo/Form';
-import DemoResult from './containers/demo/result';
+import DemoResult from 'containers/demo/result';
 import TextIndex from 'containers/text/Index';
 import TextForm from 'containers/text/Form';
 import UploadIndex from 'containers/upload/Index';
 import UploadForm from 'containers/upload/Form';
-import FaceIndex from './containers/faces/Index';
-import FaceForm from './containers/faces/Form';
+import FaceIndex from 'containers/faces/Index';
+import FaceForm from 'containers/faces/Form';
+import LearnIndex from 'containers/learn/Index';
+import LearnForm from 'containers/learn/Form';
 import Infer from './containers/Infer';
-import Learn from './containers/Learn';
 import ManualCharacter from './containers/ManualCharacter';
 import ManualText from './containers/ManualText';
 
@@ -38,7 +39,9 @@ if(root) {
             <Route path="/faces/:book_id/:volume" component={FaceForm} />
           </Route>
           <Route path="/infer" component={Infer} />
-          <Route path="/learn" component={Learn} />
+          <Route path="/learn" component={LearnIndex}>
+            <Route path="/learn/:id" component={LearnForm} />
+          </Route>
           <Route path="/manual_character" component={ManualCharacter} />
           <Route path="/manual_text" component={ManualText} />
           <Route path="/text" component={TextIndex}>

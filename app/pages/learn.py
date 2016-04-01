@@ -30,6 +30,10 @@ def index():
     characters = __group_by(books)
     return render_template('learn/index.html', books=books, characters=characters)
 
+@learn.route("/learn/<id>")
+def show(id):
+    return index()
+
 @learn.route("/learn/<id>/start", methods=['POST'])
 def start(id):
     book = db.books.find(id)

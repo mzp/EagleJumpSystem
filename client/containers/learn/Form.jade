@@ -1,0 +1,11 @@
+.characterSelect
+  each tag in currentTags
+    - var character = characters[tag] || { faces: [] };
+    div(className=selectedClassName('characterSelect_character', character.selected), key=tag, onClick=characterAction.select.bind(this, tag))
+      .characterSelect_name= name(tag) + '(' + character.faces.length +')'
+      .characterSelect_faces
+        each face in character.faces.slice(0, 10)
+          img.characterSelect_face(src='/'+face, key=face)
+  ConfirmButton(icon='tasks', onClick=start)
+if log.id
+    LogViewer(value=log.content, polling=serverAction.fetch.bind(this, log.id), interval=1000)
