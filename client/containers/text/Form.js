@@ -1,23 +1,22 @@
 import React from 'react';
 import serverAction from 'actions/server';
 import LogViewer from 'components/LogViewer';
+import ConfirmButton from 'components/ConfirmButton';
 import connect from 'containers/supports/connect';
-import { currentBook } from 'reducers/books';
 
 const template = require('react-jade').compileFile(__dirname + '/Form.jade');
 
 class Form extends React.Component {
-  selectFiles(e) {
-    const { volume, serverAction: { upload }} = this.props;
-    upload(volume.book_id, volume.volume, e.target.files);
+  run() {
+    const { serverAction: { textDetect }, volume } = this.props;
+    textDetect(volume.book_id, volume.volume);
   }
 
   render() {
-    const { volume } = this.props;
-    if(!volume.book_id) { return <div />; }
     return template({
       LogViewer,
-      selectFiles: ::this.selectFiles,
+      ConfirmButton,
+      run: ::this.run,
       ...this.props
     });
   }
