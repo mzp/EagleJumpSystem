@@ -13,6 +13,10 @@ def index():
     return render_template('text/index.html', books=books, panel_count=panel_count)
 
 @text.route("/text/<id>/<vol>")
+def show(id, vol):
+    return index()
+
+@text.route("/text/<id>/<vol>/start")
 def detect(id, vol):
     panels = db.panels.find(id, vol)
     ident = commands.text.start(panels)

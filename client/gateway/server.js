@@ -42,7 +42,7 @@ export default {
   },
 
   textDetect: (book_id, vol) => {
-    return get_api(`/text/${book_id}/${vol}` );
+    return get_api(`/text/${book_id}/${vol}/start` );
   },
 
   faceDetect: (book_id, vol) => {
