@@ -13,7 +13,8 @@ import TextIndex from 'containers/text/Index';
 import TextForm from 'containers/text/Form';
 import UploadIndex from 'containers/upload/Index';
 import UploadForm from 'containers/upload/Form';
-import Faces from './containers/Faces';
+import FaceIndex from './containers/faces/Index';
+import FaceForm from './containers/faces/Form';
 import Infer from './containers/Infer';
 import Learn from './containers/Learn';
 import ManualCharacter from './containers/ManualCharacter';
@@ -33,7 +34,9 @@ if(root) {
             <Route path="/demo/result" component={DemoResult} />
             <Route path="/demo/:id" component={DemoForm} />
           </Route>
-          <Route path="/faces" component={Faces} />
+          <Route path="/faces" component={FaceIndex}>
+            <Route path="/faces/:book_id/:volume" component={FaceForm} />
+          </Route>
           <Route path="/infer" component={Infer} />
           <Route path="/learn" component={Learn} />
           <Route path="/manual_character" component={ManualCharacter} />
