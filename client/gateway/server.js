@@ -72,7 +72,7 @@ export default {
   },
 
   infer: (book_id, vol) => {
-    return get_api(`/characters/${book_id}/${vol}` );
+    return get_api(`/characters/${book_id}/${vol}/start` );
   },
 
   saveScript: (panel) => {
