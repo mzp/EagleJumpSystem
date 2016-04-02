@@ -2,6 +2,7 @@ import React from 'react';
 import DebounceInput from 'react-debounce-input';
 import queryAction from 'actions/query';
 import connect from 'containers/supports/connect';
+import Panel from 'containers/search/Panel';
 import { currentBook } from 'reducers/books';
 import get from 'lodash.get';
 
@@ -24,8 +25,13 @@ class Form extends React.Component {
   }
 
   render() {
+    const { books } = this.props;
+
+    const book = currentBook(books);
     return template({
       DebounceInput,
+      Panel,
+      book,
       onChange: ::this.onChange,
       ...this.props
     });

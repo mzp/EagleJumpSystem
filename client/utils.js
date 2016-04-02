@@ -10,8 +10,12 @@ export function updateSelected(xs, f) {
   });
 }
 
+export function characterOfTag(book, tag) {
+  return book.characters.find((character) => character.tag == tag);
+}
+
 export function nameOfTag(book, tag) {
-  const character = book.characters.find((character) => character.tag == tag);
+  const character = characterOfTag(book, tag);
   if (character) {
     return character.name
   }

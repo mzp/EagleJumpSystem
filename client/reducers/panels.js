@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { updateSelected, move } from '../utils';
 import get from 'lodash.get';
+import flatten from 'lodash.flatten';
 import findIndex from 'lodash.findindex';
 
 const PANELS = window.__panels__  || {};
@@ -28,7 +29,9 @@ export function script(panel) {
 }
 
 export function characters(panel) {
-  return panel.metadata.characters || panel.metadata.auto_characters || [];
+  return flatten([
+      panel.metadata.characters || panel.metadata.auto_characters || [],
+      panel.metadata.others || []]);
 }
 
 export default handleActions({

@@ -4,6 +4,8 @@ import values from 'lodash.values';
 import isEmpty from 'lodash.isempty';
 import { script, characters } from 'reducers/panels';
 
+const PANELS = window.__panels__  || {};
+
 function search(query, xs) {
   var panels = xs;
 
@@ -29,7 +31,7 @@ function exec(state) {
 export default handleActions({
   'books.select': (state, action) => {
     const id = action.payload;
-    const data = flatten(values(window.__panels__[id]));
+    const data = flatten(values(PANELS[id]));
     return { data, panels: data };
   },
   'query.script': (state, action) => {

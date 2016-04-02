@@ -1,0 +1,7 @@
+.panel
+  .panel_image
+    img(src='/'+panel.path, title=script)
+  .panel_characters
+    each character, i in characters
+      .panel_character(key=i, style={ backgroundColor: character.color })
+        = character.name
