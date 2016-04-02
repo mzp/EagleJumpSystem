@@ -23,6 +23,14 @@ export function currentPanel(panels) {
   return panels.find((panel) => panel.selected);
 }
 
+export function script(panel) {
+  return panel.metadata.script || panel.metadata.auto_script || '';
+}
+
+export function characters(panel) {
+  return panel.metadata.characters || panel.metadata.auto_characters || [];
+}
+
 export default handleActions({
   'volume.select': (state, action) => {
     const { book_id, volume }= action.payload;
