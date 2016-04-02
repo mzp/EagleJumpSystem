@@ -1,5 +1,5 @@
 .searchBox
-  input.searchBox_query(placeholder="台詞等", onChange=onChange)
+  DebounceInput(className="searchBox_query", debounceTimeout=300, onChange=onChange, placeholder="台詞等", ref="query")
 
 .thumbnail
   each panel in query.panels.slice(0, 50)

@@ -36,6 +36,7 @@
     "node-font-awesome": "^1.0.2",
     "purecss": "^0.6.0",
     "react": "^0.14.7",
+    "react-debounce-input": "^2.2.0",
     "react-dom": "^0.14.7",
     "react-hotkeys": "^0.7.1",
     "react-jade": "^2.5.0",
