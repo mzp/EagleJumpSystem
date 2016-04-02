@@ -24,6 +24,6 @@ export function selectedClassName(name, selected) {
 
 export function move(xs, n) {
   const current = findIndex(xs, (x) => x.selected);
-  const next = (current + n) % xs.length;
+  const next = (xs.length + current + n) % xs.length;
   return xs.map((x, i) => ({ ...x, selected: i == next }));
 }
