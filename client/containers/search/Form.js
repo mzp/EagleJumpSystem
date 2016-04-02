@@ -9,9 +9,15 @@ import get from 'lodash.get';
 const template = require('react-jade').compileFile(__dirname + '/Form.jade');
 
 class Form extends React.Component {
-  onChange(e) {
+  onScriptChange(e) {
     const { queryAction: { script } } = this.props;
     script(e.target.value);
+  }
+
+  onTagSelect(event) {
+    const { queryAction: { tag } } = this.props;
+    const { value, checked } = event.target;
+    tag(value, checked);
   }
 
   componentWillUpdate() {
@@ -32,7 +38,8 @@ class Form extends React.Component {
       DebounceInput,
       Panel,
       book,
-      onChange: ::this.onChange,
+      onScriptChange: ::this.onScriptChange,
+      onTagSelect: ::this.onTagSelect,
       ...this.props
     });
   }

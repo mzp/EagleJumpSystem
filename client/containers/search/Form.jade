@@ -1,5 +1,11 @@
 .searchBox
-  DebounceInput(className="searchBox_query", debounceTimeout=300, onChange=onChange, placeholder="台詞等", ref="query")
+  .searchBox_script
+    DebounceInput(className="searchBox_query", debounceTimeout=300, onChange=onScriptChange, placeholder="台詞等", ref="query")
+  .searchBox_characters
+    each character in book.characters
+      .searchBox_character(key=character.tag)
+        input(type='checkbox', value=character.tag, onClick=onTagSelect)
+        =character.name
 
 .thumbnail
   each panel in query.panels.slice(0, 50)

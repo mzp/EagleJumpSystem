@@ -16,8 +16,8 @@ function search(query, xs) {
     panels =  panels.filter((panel) => xs.every((x) => script(panel).includes(x)));
   }
 
-  if(!isEmpty(query.characters)) {
-    panels = panels.filter((panel) => query.characters.every((c) => characters(panel).includes(c)));
+  if(!isEmpty(query.tags)) {
+    panels = panels.filter((panel) => query.tags.every((tag) => characters(panel).includes(tag)));
   }
 
   return panels;
@@ -32,9 +32,14 @@ export default handleActions({
   'books.select': (state, action) => {
     const id = action.payload;
     const data = flatten(values(PANELS[id]));
-    return { data, panels: data };
+    return { data, panels: data, tags: [], script: '', silence: false };
   },
   'query.script': (state, action) => {
-    return exec( { ...state, script: action.payload });
+    return exec({ ...state, script: action.payload });
+  },
+  'query.tag': (state, action) => {
+    const { tag , value } = action.payload;
+    const tags = value ?  [ ...state.tags, tag ] : state.tags.filter((x) => x != tag);
+    return exec({ ...state, tags });
   }
-}, { characters: [], script: '', silence: false });
+}, {});
