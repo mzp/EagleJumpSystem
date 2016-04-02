@@ -14,6 +14,14 @@ def index():
     panel_count = db.panels.count_by_books(books)
     return render_template('manual_characters/index.html', books=books, panels=panels, panel_count=panel_count)
 
+@manual_characters.route("/manual/characters/<id>/<vol>")
+def panel_index(id, vol):
+    return index()
+
+@manual_characters.route("/manual/characters/<id>/<vol>/form")
+def form(id, vol):
+    return index()
+
 @manual_characters.route("/manual/characters/<id>/<vol>/update", methods=['POST'])
 def update(id, vol):
     panels = list(db.panels.find(id, vol))

@@ -23,4 +23,4 @@ class PanelIndex extends Base {
   }
 }
 
-export default connect({ panelAction })(panelSync('manual/text', PanelIndex));
+export default connect({ panelAction })(panelSync('manual/characters', PanelIndex));

@@ -1,19 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { HotKeys } from 'react-hotkeys';
-import { bindActionCreators } from 'redux';
-import zip from 'lodash.zip';
-import volumeActions from '../actions/volume';
-import panelActions from '../actions/panels';
-import VolumeSelect from '../components/VolumeSelect';
-import ConfirmButton from '../components/ConfirmButton';
-import { nameOfTag, selectedClassName } from '../utils';
+import panelAction from 'actions/panels';
+import ConfirmButton from 'components/ConfirmButton';
+import connect from 'containers/supports/connect';
+import { currentPanel } from 'reducers/panels';
+import { nameOfTag, selectedClassName } from 'utils';
 
-const template = require('react-jade').compileFile(__dirname + '/ManualCharacter.jade');
+const template = require('react-jade').compileFile(__dirname + '/Form.jade');
 
 const KEYS = ['a', 'o', 'e', 'i', 'u', 'i', 'd', 'h', 't', 'n', 's', '-'];
 
-class ManualCharacter extends React.Component {
+class Form extends React.Component {
   submit(e) {
     e.preventDefault();
 
@@ -21,21 +18,9 @@ class ManualCharacter extends React.Component {
     saveCharacters(this.currentPanel());
   }
 
-  next(e) {
-    e.preventDefault();
-    const { panelAction: { next } } = this.props;
-    next();
-  }
-
-  prev(e) {
-    e.preventDefault();
-    const { panelAction: { prev } } = this.props;
-    prev();
-  }
-
   currentPanel() {
     const { panels } = this.props;
-    return panels.find((panel) => panel.selected);
+    return currentPanel(panels);
   }
 
   currentBook() {
@@ -63,26 +48,22 @@ class ManualCharacter extends React.Component {
     const { characters } = this.currentBook();
     const { editTag } = this.currentPanel();
 
-    if(editTag) {
-      setTag(characters[index].tag);
-    } else {
-      setOtherTag(characters[index].tag);
+    if(characters[index]) {
+      if(editTag) {
+        setTag(characters[index].tag);
+      } else {
+        setOtherTag(characters[index].tag);
+      }
     }
   }
 
   render() {
     const panel = this.currentPanel();
     const keymap = {
-      'switch': 'ctrl+o',
-      'submit': 'ctrl+enter',
-      'next': 'ctrl+s',
-      'prev': 'ctrl+l'
     };
     let handlers = {
       'switch': ::this.switchEditArea,
-      'submit': ::this.submit,
-      'next': ::this.next,
-      'prev': ::this.prev
+      'submit': ::this.submit
     };
 
     KEYS.forEach((key, i) => {
@@ -91,7 +72,6 @@ class ManualCharacter extends React.Component {
     });
 
     const content = template({
-      VolumeSelect,
       ConfirmButton,
       panel,
       submit: ::this.submit,
@@ -106,10 +86,4 @@ class ManualCharacter extends React.Component {
   }
 }
 
-export default connect(
-    (state)=> state,
-    (dispatch) => ({
-      volumeAction: bindActionCreators(volumeActions, dispatch),
-      panelAction: bindActionCreators(panelActions, dispatch)
-    }),
-  )(ManualCharacter);
+export default connect({ panelAction })(Form);

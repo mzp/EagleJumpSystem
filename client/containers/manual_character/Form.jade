@@ -1,0 +1,34 @@
+- var auto_characters = panel.metadata.auto_characters || [];
+- var characters = panel.metadata.characters || [];
+- var others = panel.metadata.others || [];
+.charactersDetect
+  .charactersDetect_thumbnail
+    img(src='/' + panel.detect)
+  .charactersDetect_infer
+    div
+      i.fa.fa-magic
+    each face, index in panel.faces
+      .charactersDetect_face(key=face)
+        img(src='/'+face)
+        = name(auto_characters[index])
+div(className = selectedClassName('charactersInput', panel.editTag))
+     each face, i in panel.faces
+      - var className = selectedClassName('charactersInput_character', panel.editTag && panel.selectedFace == face)
+      div(className=className, key=face, onClick=panelAction.selectFace.bind(this, face))
+        .charactersInput_face
+          img(src='/'+face)
+        .charactersInput_name
+          = name(characters[i])
+div(className = selectedClassName('charactersOtherInput', !panel.editTag))
+  each character, index in currentCharacters()
+    - var className = selectedClassName('charactersOtherInput_character', others.includes(character.tag))
+    div(className=className, key=character.tag, onClick=panelAction.setOtherTag.bind(this, character.tag))
+      = KEYS[index] + ':' + name(character.tag)
+
+ConfirmButton(icon='group', onClick=submit, autoFocus=true)
+.charactersGuide
+  ul
+    li Ctrl+o: switch edit area
+    li Ctrl+Enter: submit
+    li Control+s: next
+    li Control+l: prev
