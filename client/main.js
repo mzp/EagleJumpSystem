@@ -17,7 +17,8 @@ import FaceIndex from 'containers/faces/Index';
 import FaceForm from 'containers/faces/Form';
 import LearnIndex from 'containers/learn/Index';
 import LearnForm from 'containers/learn/Form';
-import Infer from './containers/Infer';
+import CharacterIndex from 'containers/characters/Index';
+import CharacterForm from 'containers/characters/Form';
 import ManualCharacter from './containers/ManualCharacter';
 import ManualText from './containers/ManualText';
 
@@ -38,7 +39,9 @@ if(root) {
           <Route path="/faces" component={FaceIndex}>
             <Route path="/faces/:book_id/:volume" component={FaceForm} />
           </Route>
-          <Route path="/infer" component={Infer} />
+          <Route path="/characters" component={CharacterIndex}>
+            <Route path="/characters/:book_id/:volume" component={CharacterForm} />
+          </Route>
           <Route path="/learn" component={LearnIndex}>
             <Route path="/learn/:id" component={LearnForm} />
           </Route>
