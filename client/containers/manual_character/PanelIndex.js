@@ -3,6 +3,9 @@ import panelAction from 'actions/panels';
 import connect from 'containers/supports/connect';
 import panelSync from 'containers/supports/panelSync';
 import Base from 'components/panel-form/PanelIndex';
+import { selectedClassName } from 'utils';
+
+const template = require('react-jade').compileFile(__dirname + '/Panel.jade');
 
 class PanelIndex extends Base {
   next(e) {
@@ -20,6 +23,10 @@ class PanelIndex extends Base {
       'next': ::this.next,
       'prev': ::this.prev
     };
+  }
+
+  panelComponent(panel) {
+    return template({ panel, selectedClassName });
   }
 }
 

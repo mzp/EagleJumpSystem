@@ -1,0 +1,6 @@
+div(className=selectedClassName('charactersThumbnail', panel.selected))
+  .charactersThumbnail_image
+    img(src='/'+panel.detect)
+  each face in panel.faces
+    .charactersThumbnail_image(key=face)
+      img(src='/'+face)

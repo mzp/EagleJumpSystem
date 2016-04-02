@@ -1,0 +1,5 @@
+div(className=selectedClassName('scriptThumbnail', panel.selected))
+  .scriptThumbnail_image
+    img(src='/'+panel.path)
+  span.scriptThumbnail_script
+    =panel.metadata.script || panel.metadata.auto_script

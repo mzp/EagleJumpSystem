@@ -1,9 +1,6 @@
 #middle
   each panel in panels
-    div(className=selectedClassName('scriptThumbnail', panel.selected), key=panel.path, onClick=panelAction.select.bind(this, panel.path))
-      .scriptThumbnail_image
-        img(src='/'+panel.path)
-      span.scriptThumbnail_script
-        =panel.metadata.script || panel.metadata.auto_script
+    div(key=panel.path, onClick=panelAction.select.bind(this, panel.path))
+      =panelComponent(panel)
 #main
   =children
