@@ -19,6 +19,10 @@ function init(panels) {
   });
 }
 
+export function currentPanel(panels) {
+  return panels.find((panel) => panel.selected);
+}
+
 export default handleActions({
   'volume.select': (state, action) => {
     const { book_id, volume }= action.payload;

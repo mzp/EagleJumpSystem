@@ -20,7 +20,9 @@ import LearnForm from 'containers/learn/Form';
 import CharacterIndex from 'containers/characters/Index';
 import CharacterForm from 'containers/characters/Form';
 import ManualCharacter from './containers/ManualCharacter';
-import ManualText from './containers/ManualText';
+import ManualTextIndex from 'containers/manual_text/Index';
+import ManualTextPanelIndex from 'containers/manual_text/PanelIndex';
+import ManualTextForm from 'containers/manual_text/Form';
 
 const root = document.getElementById('root');
 if(root) {
@@ -45,8 +47,12 @@ if(root) {
           <Route path="/learn" component={LearnIndex}>
             <Route path="/learn/:id" component={LearnForm} />
           </Route>
-          <Route path="/manual_character" component={ManualCharacter} />
-          <Route path="/manual_text" component={ManualText} />
+          <Route path="/manual/character" component={ManualCharacter} />
+          <Route path="/manual/text" component={ManualTextIndex}>
+            <Route path="/manual/text/:book_id/:volume" component={ManualTextPanelIndex}>
+              <Route path="/manual/text/:book_id/:volume/form" component={ManualTextForm} />
+            </Route>
+          </Route>
           <Route path="/text" component={TextIndex}>
             <Route path="/text/:book_id/:volume" component={TextForm} />
           </Route>
