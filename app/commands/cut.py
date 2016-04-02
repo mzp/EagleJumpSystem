@@ -1,6 +1,7 @@
-import db.panels
-import threading
+import os
 import tempfile
+import threading
+import db.panels
 import commands
 from images.cut import Cut
 
@@ -26,8 +27,10 @@ def run(id, volume, images):
         logger.exception(e)
 
 def read(storage):
-    (_, path) = tempfile.mkstemp(prefix='ejs')
+    (fd, path) = tempfile.mkstemp(prefix='ejs')
     storage.save(path)
+    socket = os.fdopen(fd,'w')
+    socket.close()
     return (storage.filename, path)
 
 def start(id, volume, images):
