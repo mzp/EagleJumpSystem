@@ -1,15 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="pure-form searchbox">
-  <input type="text" class="pure-input-rounded searchbox-query">
-</div>
-
-<div class="pure-g">
-  {% for panel in panels %}
-  <div class="pure-u-1-6 thumbnail">
-    <img class="thumbnail-image" src="{{panel.path}}" title="{{panel.metadata.auto_script}}" />
-  </div>
-  {% endfor %}
-</div>
+<script type="text/javascript">
+window.__books__ = {{books|tojson|safe}};
+window.__panels__ = {{panels|safe}};
+window.__panel_count_ = {{panel_count|tojson|safe}};
+</script>
+<div id="root"></div>
+<script src="/static/bundle/main.js" type="text/javascript"></script>
 {% endblock %}
-
