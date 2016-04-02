@@ -1,0 +1,7 @@
+.searchBox
+  input.searchBox_query(placeholder="台詞等", onChange=onChange)
+
+.thumbnail
+  each panel in query.panels.slice(0, 50)
+    .thumbnail_image(key=panel.path)
+      img(src='/'+panel.path, title=panel.metadata.auto_script)

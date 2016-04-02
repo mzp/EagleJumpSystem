@@ -21,6 +21,8 @@ import ManualCharacterPanelIndex from 'containers/manual_character/PanelIndex';
 import ManualTextForm from 'containers/manual_text/Form';
 import ManualTextIndex from 'containers/manual_text/Index';
 import ManualTextPanelIndex from 'containers/manual_text/PanelIndex';
+import SearchIndex from 'containers/search/Index';
+import SearchForm from 'containers/search/Form';
 import TextForm from 'containers/text/Form';
 import TextIndex from 'containers/text/Index';
 import UploadForm from 'containers/upload/Form';
@@ -64,6 +66,9 @@ if(root) {
           </Route>
           <Route path="/upload" component={UploadIndex}>
             <Route path="/upload/:book_id/:volume" component={UploadForm} />
+          </Route>
+          <Route path="/" component={SearchIndex}>
+            <Route path="/search/:id" component={SearchForm} />
           </Route>
         </Router>
       </Provider>,
