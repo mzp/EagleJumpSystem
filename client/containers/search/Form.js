@@ -14,9 +14,15 @@ class Form extends React.Component {
     script(e.target.value);
   }
 
-  onTagSelect(event) {
+  onSilenceSelect(e) {
+    const { queryAction: { silence } } = this.props;
+    const { checked } = e.target;
+    silence(checked);
+  }
+
+  onTagSelect(e) {
     const { queryAction: { tag } } = this.props;
-    const { value, checked } = event.target;
+    const { value, checked } = e.target;
     tag(value, checked);
   }
 
@@ -40,6 +46,7 @@ class Form extends React.Component {
       book,
       onScriptChange: ::this.onScriptChange,
       onTagSelect: ::this.onTagSelect,
+      onSilenceSelect: ::this.onSilenceSelect,
       ...this.props
     });
   }

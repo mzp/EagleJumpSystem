@@ -1,11 +1,14 @@
 .searchBox
   .searchBox_script
-    DebounceInput(className="searchBox_query", debounceTimeout=300, onChange=onScriptChange, placeholder="台詞等", ref="query")
+    DebounceInput(className="searchBox_query", debounceTimeout=300, onChange=onScriptChange, placeholder="台詞等", ref="query", readOnly=query.silence, value=query.script)
   .searchBox_characters
     each character in book.characters
       .searchBox_character(key=character.tag)
-        input(type='checkbox', value=character.tag, onClick=onTagSelect)
+        input(type='checkbox', value=character.tag, onChange=onTagSelect, checked=query.tags.includes(character.tag))
         =character.name
+  .searchBox_other
+    input(type='checkbox', onChange=onSilenceSelect, checked=query.silence)
+    ='セリフなし'
 
 .thumbnail
   each panel in query.panels.slice(0, 50)

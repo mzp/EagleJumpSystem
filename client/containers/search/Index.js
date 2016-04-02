@@ -1,5 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router'
+import isEqual from 'lodash.isequal';
+import isEmpty from 'lodash.isempty';
 import bookAction from 'actions/books';
 import queryAction from 'actions/query';
 import bookSync from 'containers/supports/bookSync';
@@ -11,24 +13,26 @@ const template = require('react-jade').compileFile(__dirname + '/Index.jade');
 
 class Index extends React.Component {
   componentWillMount() {
-    const { queryAction: { script }, location: { query: { q } } } = this.props;
+    const { queryAction: { restore }, location: { query } } = this.props;
+    const obj = this.parseQuery(query);
+    restore(obj);
+  }
 
-    if(q) {
-      script(path);
-    }
+  parseQuery(obj) {
+    const script = obj.q || '';
+    const silence = obj.silence == 'true';
+    const tags = (obj.tags||'').split(',').filter((str) => !isEmpty(str));
+
+    return { script, silence, tags };
   }
 
   componentDidUpdate() {
-    const {
-      books,
-      query: { script },
-      location: { query: { q } }
-    } = this.props;
-
+    const { books, query: { script, silence, tags }, location: { query: loc } } = this.props;
+    const prev = this.parseQuery(loc);
     const book = currentBook(books);
 
-    if (script && script != q) {
-      browserHistory.push(`/search/${book.id}?q=${script}`);
+    if(book && !isEqual({ script, silence, tags }, prev)) {
+      browserHistory.push(`/search/${book.id}?q=${script}&silence=${silence}&tags=${tags.join(',')}`);
     }
   }
 
