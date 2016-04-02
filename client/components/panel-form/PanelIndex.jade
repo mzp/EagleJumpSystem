@@ -1,6 +1,7 @@
-#middle
+#middle(ref='scrollArea')
   each panel in panels
-    div(key=panel.path, onClick=panelAction.select.bind(this, panel.path))
+    - var refs = panel.selected ? { 'ref': 'selectedPanel' } : {};
+    div(key=panel.path, onClick=panelAction.select.bind(this, panel.path))&attributes(refs)
       =panelComponent(panel)
 #main
   =children

@@ -11,6 +11,14 @@ export default class PanelIndex extends React.Component {
   panelComponent(panel) {
   }
 
+  componentWillUpdate() {
+    const { scrollArea, selectedPanel } = this.refs;
+
+    if(selectedPanel) {
+      scrollArea.scrollTop = selectedPanel.offsetTop;
+    }
+  }
+
   render() {
     const handlers = this.handlers();
     const content = template({ panelComponent: ::this.panelComponent, ...this.props });
