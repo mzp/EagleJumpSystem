@@ -25,10 +25,18 @@ export function currentPanel(panels) {
 }
 
 export function script(panel) {
+  if(!panel.metadata) {
+    return '';
+  }
+
   return panel.metadata.script || panel.metadata.auto_script || '';
 }
 
 export function characters(panel) {
+  if(!panel.metadata) {
+    return [];
+  }
+
   return flatten([
       panel.metadata.characters || panel.metadata.auto_characters || [],
       panel.metadata.others || []]);

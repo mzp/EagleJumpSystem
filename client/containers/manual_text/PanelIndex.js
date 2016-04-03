@@ -3,6 +3,7 @@ import panelAction from 'actions/panels';
 import connect from 'containers/supports/connect';
 import panelSync from 'containers/supports/panelSync';
 import Base from 'components/panel-form/PanelIndex';
+import { script } from 'reducers/panels';
 import { selectedClassName } from 'utils';
 
 const template = require('react-jade').compileFile(__dirname + '/Panel.jade');
@@ -26,7 +27,7 @@ class PanelIndex extends Base {
   }
 
   panelComponent(panel) {
-    return template({ panel, selectedClassName });
+    return template({ panel, selectedClassName, script });
   }
 }
 
