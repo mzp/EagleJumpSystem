@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 import flatten from 'lodash.flatten';
 import values from 'lodash.values';
 import isEmpty from 'lodash.isempty';
-import sortedUniq from 'lodash.sortedUniq';
+import uniq from 'lodash.uniq';
 import { script, characters } from 'reducers/panels';
 
 const PANELS = window.__panels__  || {};
@@ -28,7 +28,7 @@ function normalize(state) {
   const { tags } = state;
   const new_tags = tags.filter((tag) => !isEmpty(tag));
 
-  return { ...state, tags: sortedUniq(new_tags) };
+  return { ...state, tags: uniq(new_tags) };
 }
 
 function exec(state) {

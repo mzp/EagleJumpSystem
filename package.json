@@ -34,6 +34,7 @@
     "lodash.isequal": "^4.1.2",
     "lodash.mapvalues": "^4.2.0",
     "lodash.sorteduniq": "^4.0.2",
+    "lodash.uniq": "^4.2.1",
     "lodash.values": "^4.1.0",
     "lodash.zip": "^4.0.0",
     "node-font-awesome": "^1.0.2",
