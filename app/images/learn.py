@@ -66,9 +66,7 @@ def __train(logger, train_image, train_label, model, batch_size=10, max_steps=20
 
     return sess
 
-reuse = None
 def train(logger, model_path, num_classes, data):
-    global reuse
     # setup training label
     train_image = []
     train_label = []
@@ -82,7 +80,7 @@ def train(logger, model_path, num_classes, data):
     train_label = np.asarray(train_label)
 
     with tf.Graph().as_default():
-        with tf.variable_scope('ejs', reuse=None) as scope:
+        with tf.variable_scope('ejs') as scope:
             reuse = True
             # create expression
             acc = __accuracy(num_classes)
@@ -94,11 +92,12 @@ def train(logger, model_path, num_classes, data):
 
     # save trained model
     saver.save(sess, model_path)
+    tf.reset_default_graph()
+    sess.close()
 
 
 def infer(model_path, num_classes, path):
-    global reuse
-    with tf.variable_scope('ejs', reuse=reuse) as scope:
+    with tf.variable_scope('ejs') as scope:
         reuse = True
         (images_placeholder, keep_prob, logits) = __logits(num_classes)
 
@@ -112,5 +111,6 @@ def infer(model_path, num_classes, path):
     prediction = np.argmax(logits.eval(feed_dict={
           images_placeholder: [image],
           keep_prob: 1.0 })[0])
+    tf.reset_default_graph()
     sess.close()
     return prediction
