@@ -8,7 +8,7 @@ import { nameOfTag, selectedClassName } from 'utils';
 
 const template = require('react-jade').compileFile(__dirname + '/Form.jade');
 
-const KEYS = ['a', 'o', 'e', 'i', 'u', 'i', 'd', 'h', 't', 'n', 's', '-'];
+const KEYS = ['a', 'o', 'e', 'i', 'u', 'd', 'h', 't', 'n', 's', '-', ';'];
 
 class Form extends React.Component {
   submit(e) {
