@@ -28,15 +28,13 @@ def update(path, auto_characters=None, auto_script=None, script=None, characters
             'others': others
             })
 
-db = __db()
 
 def find(path):
-    xs = db.search(where('path') == path)
+    xs = __db().search(where('path') == path)
     if len(xs) == 0:
         return {}
     else:
         return xs[0]
 
-
 def find_prefix(prefix):
-    return db.search(where('path').matches(prefix+'.*'))
+    return __db().search(where('path').matches(prefix+'.*'))
