@@ -10,7 +10,6 @@ import CharacterForm from 'containers/characters/Form';
 import CharacterIndex from 'containers/characters/Index';
 import DemoForm from 'containers/demo/Form';
 import DemoIndex from 'containers/demo/Index';
-import DemoResult from 'containers/demo/result';
 import FaceForm from 'containers/faces/Form';
 import FaceIndex from 'containers/faces/Index';
 import LearnForm from 'containers/learn/Form';
@@ -42,7 +41,6 @@ if(root) {
             <Route path="/characters/:book_id/:volume" component={CharacterForm} />
           </Route>
           <Route path="/demo" component={DemoIndex}>
-            <Route path="/demo/result" component={DemoResult} />
             <Route path="/demo/:id" component={DemoForm} />
           </Route>
           <Route path="/faces" component={FaceIndex}>
