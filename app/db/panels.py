@@ -13,15 +13,17 @@ def __info(path):
     (_, _, book_id, volume, name) = path.parts
     return (book_id, volume, name)
 
-def __make(path):
-    metadata = db.metadata.find(path.as_posix())
+def __find(path, xs):
+    for x in xs:
+        if x['path'] == path:
+            return x
+    return None
+
+def __make(path, table):
+    metadata = __find(path.as_posix(), table)
     (book_id, volume, name) = __info(path)
     (detect, faces) = db.faces.find( { 'book_id': book_id, 'volume': volume, 'name': name })
     return { 'path': path, 'metadata': metadata, 'book_id': book_id, 'volume': volume, 'name': name, 'detect': detect, 'faces': faces }
-
-def all():
-    for path in root.glob('*/*/*.*'):
-        yield __make(path)
 
 def group_by(books, f=None):
     info = {}
@@ -35,7 +37,6 @@ def group_by(books, f=None):
                 info[book['id']][vol] = f(panels)
             else:
                 info[book['id']][vol] = panels
-
     return info
 
 def count_by_books(books):
@@ -48,5 +49,7 @@ def update(book_id, volume, filename, position, image):
     cv2.imwrite(new_path.as_posix(), image)
 
 def find(book_id, volume):
+    prefix = root / book_id / 'vol{0}'.format(volume)
+    metadata = list(db.metadata.find_prefix(prefix.as_posix()))
     for path in __path_for(book_id, volume).glob('*.*'):
-        yield __make(path)
+        yield __make(path, metadata)
