@@ -59,6 +59,8 @@ class Form extends React.Component {
 
   render() {
     const panel = this.currentPanel();
+    if(!panel) { return <div />; }
+
     const keymap = {
     };
     let handlers = {
