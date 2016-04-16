@@ -37,7 +37,7 @@ Obtain API key(server key) for [Google Vision API](https://cloud.google.com/visi
 
 ```
 export GOOGLE_APPLICATION_CREDENTIALS="/path/to/auth.json"
-pip install --require requirements.txt
+pip install -r requirements.txt
 npm install
 npm run gulp build
 python app/main.py
